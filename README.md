@@ -23,14 +23,14 @@ Use the following HTML structure when implementing the slider to your webpage.
 		</div>
 	</div>
 
-Basic Implementation :
+Basic Implementation:
 ---
 
 	Update coming soon...
 
-Some options aren't compatable with one another, make sure you check the console if things aren't working correctly, you will get an error message that gives you more insight :)
+Some options aren't compatable with one another, make sure you check the console if things aren't working correctly, you will get an error message that gives you more insight
 
-Methods
+Methods:
 ---
 
 zRS has a few methods that you can call in order to manipulate the plugin once it's up and running, they are as follows:
@@ -38,11 +38,3 @@ zRS has a few methods that you can call in order to manipulate the plugin once i
 	Update coming soon...
 
 Bind them to whatever events you need to!
-
-
-
-
-
-
-
-
