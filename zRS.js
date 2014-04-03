@@ -1,0 +1,713 @@
+;(function() {
+
+	var version = '2.1',
+		pluginName = 'zRS';
+
+	$.fn.zRS = function(options, param) {
+
+		var results = [];
+
+		for(var i = 0; i < this.length; i++) {
+
+			var self = $(this[i]);
+
+			if(!self.data('instance') && typeof options != 'string') {
+
+				var instance = new pluginCore(self, options);
+				self.data('instance', instance);
+				instance.private_methods.initialise();
+
+			} else {
+
+				var instance = self.data('instance');
+
+				if(!instance) {
+
+					console.log('['+pluginName+' v'+version+'] - You\'re trying to fire a method on an element with no instance!');
+					return false;
+
+				} else if(instance.public_methods[options]) {
+
+					if(options == 'transition') {
+
+						return instance.public_methods['transition'].handler(param);
+
+					}
+
+					if (this.length > 1) {
+
+						results.push(instance.public_methods[options](param));
+
+					} else {
+
+						return instance.public_methods[options](param);
+						
+					}				
+
+				} else {
+
+					instance.private_methods.error(options + ' is not a defined method! Here\'s a list of methods! https://github.com/WsCandy/zRS#methods');
+
+				}
+
+			}
+
+		}
+
+		return results;
+
+	}
+
+	function pluginCore(self, options, param) {
+
+		var instance = this;
+
+		instance.defaults = {
+
+			delay: 5000,
+			speed : 1000,
+			transition : 'slide',
+			procedural : false,
+			pager : false,
+			pauseOnHover : false,
+			visibleSlides : 1,
+			slideSpacing : 0,
+			pre_trans_callback : null,
+			trans_callback : null,
+			load_callback : null
+
+		};
+
+		var settings = $.extend(instance.defaults, options);
+
+		var inner = self.data('inner') == undefined ? self.children('.inner-slider') : self.data('inner'),
+			slides = inner.children(),
+			slideCount = slides.length,
+			currentSlide = 0;
+
+		instance.private_methods = {
+
+			initialise: function() {
+
+				if(settings.procedural == true) {
+
+					instance.private_methods['procedural'].setUp();
+
+				}
+
+				instance.private_methods.markSlides();
+
+				if (typeof settings.pager == 'object' && settings.pager.size() > 0) {
+
+					instance.private_methods['pager'].setUp();
+
+				} else if(typeof settings.pager == 'object' && settings.pager.size() <= 0) {
+
+					instance.private_methods.error('Pager container not found!');
+
+				}
+
+				if(settings.pauseOnHover == true) {
+
+					self.hover(function() {
+
+						instance.public_methods.pause();
+
+					}, function() {
+
+						instance.public_methods.play();
+
+					});
+
+				}
+
+				$(window).resize(function() {
+
+					instance.public_methods.pause();
+					instance.public_methods.widthAdjustments();
+
+					window.clearTimeout(self.resizeTimer);
+					self.resizeTimer = window.setTimeout(function(){
+
+						instance.public_methods.play();
+
+					}, 200);
+
+				});
+
+				$(window).load(function() {
+
+					instance.public_methods['transition'][settings.transition].setUp();
+					
+					if(slides.is(':hidden')) {
+
+						slides.eq(0).show();
+						self.find('.inner-slider').css({
+
+							'height' : 'auto'
+
+						});
+
+						self.find('.loader').remove();
+
+					}
+
+					if($.isFunction(settings.load_callback)) {
+
+						settings.load_callback.call(self);
+
+					}
+
+					instance.public_methods.play();
+					
+				});
+
+				if(slideCount <= 1) {
+
+					instance.private_methods.error('Less than one slide, shutting down');
+					return false;
+
+				}
+
+			},
+
+			error: function(message) {
+
+				console.log('['+ pluginName +' v'+version+'] - ' + message + ' D:');
+
+			},
+
+			updateCurrentSlide: function(difference, direction) {
+
+				if(currentSlide >= slides.length -1 && direction == 'forward') {
+
+					currentSlide = 0;
+
+				} else if(currentSlide == 0 && direction == 'back') {
+
+					currentSlide = slideCount + difference;
+
+				} else {
+
+					currentSlide = currentSlide + difference;
+
+				}
+
+				if($.isFunction(settings.trans_callback)) {
+
+					settings.trans_callback.call($('.slide[data-slide="'+currentSlide+'"]'), {
+
+						slide: currentSlide
+
+					});
+
+				}
+
+			},
+
+			determinTarget: function(difference, direction) {
+
+				if(currentSlide >= slides.length -1 && direction == 'forward') {
+
+					var targetSlide = 0;
+
+				} else if(currentSlide == 0 && direction == 'back') {
+
+					var	targetSlide = slideCount + difference;
+
+				} else {
+
+					var targetSlide = currentSlide + difference;
+
+				}
+
+				if(targetSlide < 0) {
+
+					var targetSlide = slides.length -1;
+
+				} else if(targetSlide > slides.length -1) {
+
+					var targetSlide = 0;
+
+				}
+
+				return targetSlide;
+
+			},
+
+			markSlides: function() {
+
+				for(var i = 0; i < slideCount; i++) { 
+
+					inner.children().eq(i).attr('data-slide', i).addClass('slide');
+
+				}
+
+			},
+
+			procedural: {
+
+				setUp: function() {
+
+					for(var i = 0; i < slideCount; i++) {
+
+						var slide = inner.children().eq(i);
+
+						if(!(slide.is('img'))) {
+
+							slide = slide.find('img');
+
+						}
+
+						if(i == 0) {
+
+							slide.attr('src', slide.attr('data-src'));
+
+						}
+
+					}
+
+				},
+
+				transition: function(direction, difference) {
+
+					var targetSlide = inner.children('*[data-slide='+instance.private_methods.determinTarget(difference, direction)+']');
+					var source = 'src';
+
+					if(!(targetSlide.is('img'))) {
+
+						targetSlide = targetSlide.find('img');
+
+					}
+
+					if(targetSlide.attr('src') != targetSlide.data(source)) {
+
+						targetSlide.unbind().load(function(){
+
+							instance.public_methods['transition'][settings.transition][direction](difference);
+
+						}).attr('src', targetSlide.data(source));
+
+					} else {
+						
+						instance.public_methods['transition'][settings.transition][direction](difference);
+							
+					}					
+
+				}
+
+			},
+
+			pager : {
+
+				setUp: function() {
+
+					for(var i = 0; i < slideCount; i++) { 
+
+						$('<a />', {
+
+							'class': 'javascript:void(0)',
+							'data-target' : i
+
+						}).appendTo(settings.pager);
+
+					}
+
+					instance.private_methods['pager'].update(0);
+
+					settings.pager.children().click(function() {
+
+						instance.public_methods.goTo($(this).data('target'));
+
+					});
+
+				},
+
+				update: function(targetSlide) {
+
+
+					if(typeof settings.pager == 'object' && settings.pager.size() > 0) {
+
+						settings.pager.children().removeClass();
+						settings.pager.children('a[data-target='+targetSlide+']').addClass('active');
+
+					}
+
+				}
+
+			}
+
+		};
+
+		instance.public_methods = {
+
+				transition: {
+
+					handler: function(direction, difference) {
+
+						if(slides.is(':animated') || inner.is(':animated')) {
+
+							return "Be Patient, let it finish its tranistion...";
+
+						} else {
+
+							var difference = typeof difference == 'undefined' ? (direction == 'back' ? -1 : 1) : difference,
+								direction = typeof direction == 'undefined' ? direction = 'forward' : direction,
+								target = instance.private_methods.determinTarget(difference);
+
+							if($.isFunction(settings.pre_trans_callback)) {
+
+								settings.pre_trans_callback.call($('.slide[data-slide="'+target+'"]'), {
+
+									target: target
+
+								});
+
+							}
+
+							if(settings.procedural == true) {
+
+								instance.private_methods['procedural'].transition(direction, difference);
+
+							} else {
+
+								instance.public_methods['transition'][settings.transition][direction](difference);								
+
+							}
+
+							instance.public_methods.play();
+							instance.private_methods['pager'].update(instance.private_methods.determinTarget(difference, direction));
+
+						}
+
+						return "Weeeeeeeeeeee... Look at it go!";
+
+					},
+
+					fade: {
+
+						setUp: function() {
+
+							slides.css({
+
+								'top' : '0px',
+								'left' : '0px'
+
+							});
+
+							for(var i = 0; i < slideCount; i++) {
+
+								if(i == 0) {
+
+									slides.eq(i).css({
+
+										'position' : 'relative',
+										'z-index' : '1'
+
+									});
+
+								} else {
+
+									slides.eq(i).css({
+
+										'position' : 'absolute',
+										'z-index' : '0'
+
+									}).hide();
+
+								}
+
+							}
+
+						},
+
+						forward: function(difference) {
+							
+							inner.children().eq(difference).css({
+
+								'z-index' : '2'
+
+							}).fadeIn(settings.speed, function() {
+							
+								inner.children().eq(difference).css({
+
+									'position' : 'relative'
+
+								});
+								
+								for(var i = 0; i < difference; i++) {
+
+									inner.children().eq(0).css({
+
+										'z-index' : '1',
+										'position' : 'absolute'
+
+									}).appendTo(inner).hide();
+									
+								}
+
+								instance.private_methods.updateCurrentSlide(difference, 'forward');
+
+							});
+
+						},
+
+						back : function(difference) {							
+
+							for(var i = 0; i > difference; i--) {
+
+								inner.children(':last-child').prependTo(inner);
+
+							}
+
+							inner.children().css({
+
+								'z-index' : '0'
+
+							});
+
+							inner.children().eq(0).css({
+
+								'z-index' : '1',
+								'position' : 'absolute'
+
+							}).fadeIn(settings.speed, function(){
+
+								inner.children().eq(0).css({
+
+									'position' : 'relative'
+
+								});
+
+								inner.children().not(':first-child').css({
+
+									'z-index' : '0',
+									'position' : 'absolute'
+
+								}).hide();
+
+								instance.private_methods.updateCurrentSlide(difference, 'back');
+
+							});
+
+						}
+						
+					},
+
+					slide: {
+
+						setUp: function() {
+							
+							slides.wrapAll('<div class="carousel" />');
+							inner = self.children('.inner-slider').children('.carousel');
+
+							self.data('inner', inner);
+
+							inner.css({
+
+								'position' : 'relative'
+
+							});
+
+							slides.css({
+
+								'float' : 'left',
+								'margin-left' : settings.slideSpacing / 2 + 'px',
+								'margin-right' : settings.slideSpacing / 2 + 'px'
+
+							});							
+
+							instance.public_methods.widthAdjustments();
+
+						},
+
+						forward: function(difference) {
+
+							inner.animate({
+
+								'left' : '-' + slides.outerWidth(true) * difference + 'px'
+
+
+							}, settings.speed, function(){
+
+								inner.css({
+
+									'left' : '0px'
+
+								});
+
+								for(var i = 0; i < difference; i++) {
+
+									inner.children(':first-child').appendTo(inner);
+
+								}
+
+								instance.private_methods.updateCurrentSlide(difference, 'forward');
+
+							});
+
+						},
+
+						back: function(difference) {
+
+							for(var i = 0; i > difference; i--) {
+
+								inner.children(':last-child').prependTo(inner);
+
+							}
+
+							inner.css({
+
+								'left' : '-' + slides.outerWidth(true) * Math.abs(difference) + 'px'
+
+							});
+
+							inner.animate({
+
+								'left' : '0px'
+
+							}, settings.speed, function() {
+
+								instance.private_methods.updateCurrentSlide(difference, 'back');
+								
+							});
+
+						}
+
+					}
+
+				},
+
+				widthAdjustments: function() {
+
+					if(settings.transition != 'fade') {
+
+						slides.css({
+
+							'width' : (inner.parent().width() / settings.visibleSlides) - settings.slideSpacing + 'px'
+
+						});
+
+						inner.css({
+
+							'width' : (inner.parent().width() * slideCount) / settings.visibleSlides + 'px'
+
+						});
+						
+					} 
+
+				},
+
+				setVisibleSlides: function(number) {
+
+					if(number <= 0) {
+
+						return "0 or less...? Seriously?";
+
+					}
+
+					if(settings.transition == 'fade') {
+
+						instance.private_methods.error('You can only have one slide visible with fade!');
+						return "Oh noes :(";
+
+					}
+
+					if(typeof number != 'number') {
+
+						instance.private_methods.error('You need to set a number!');
+						return "Oh noes :(";
+
+					} else {
+
+						instance.public_methods.pause();
+						settings.visibleSlides = number;
+						instance.public_methods.widthAdjustments();			
+						instance.public_methods.play();
+
+					}
+
+					var des = number == 1 ? 'is ' : 'are ';
+
+					return "Wow...! Look now there " + des + number+"!";
+
+				},
+
+				goTo: function(target) {
+
+					var difference = target - currentSlide;
+
+					if(target > slideCount -1) {
+
+						instance.private_methods.error('Stop trying to go to a slide that doesn\'t exist!');
+						return "Denied!";
+
+					}
+
+					if(target > currentSlide) {
+
+						instance.public_methods['transition'].handler('forward', difference);
+
+					} else if(target < currentSlide) {
+
+						instance.public_methods['transition'].handler('back', difference);
+
+					} else {
+
+						instance.private_methods.error('You\'re trying to go to the same slide you\'re on!');
+						return "Denied!";
+
+					}
+
+					return 'Get you going to slides, '+ settings.transition +' it baby!';
+
+				},
+
+				play: function() {
+
+					window.clearTimeout(self.timer);
+
+					if(settings.delay > 0) {
+
+						self.timer = window.setTimeout(instance.public_methods['transition'].handler, settings.delay);						
+						
+					}
+
+					return "Playing!";
+
+				},
+
+				pause: function() {
+
+					window.clearTimeout(self.timer);
+
+					return "Paused!";
+
+				}
+
+		};
+
+	}
+	
+})();
+
+$(document).ready(function() {
+
+	$('.slider').zRS({
+
+		pauseOnHover: true,
+		transition: 'fade',
+		pager: $('.pager'),
+		pre_trans_callback: function(e) {
+
+
+		},
+
+		trans_callback: function(e) {
+
+
+		}
+
+	});
+
+});
