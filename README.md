@@ -1,4 +1,4 @@
-zRS - Responsive Slider
+zRS - Responsive Slider, v2.1
 ===
 
 Here's a list of options with all their defualt values:
