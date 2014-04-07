@@ -1,6 +1,6 @@
 ;(function() {
 
-	var version = '2.1',
+	var version = '2.2',
 		pluginName = 'zRS';
 
 	$.fn.zRS = function(options, param) {
@@ -74,6 +74,7 @@
 			slideSpacing : 0,
 			pre_trans_callback : null,
 			trans_callback : null,
+			sizes: null,
 			load_callback : null
 
 		};
@@ -123,15 +124,7 @@
 
 				$(window).resize(function() {
 
-					instance.public_methods.pause();
-					instance.public_methods.widthAdjustments();
-
-					window.clearTimeout(self.resizeTimer);
-					self.resizeTimer = window.setTimeout(function(){
-
-						instance.public_methods.play();
-
-					}, 200);
+					instance.private_methods.resizeFuncs();
 
 				});
 
@@ -174,6 +167,21 @@
 			error: function(message) {
 
 				console.log('['+ pluginName +' v'+version+'] - ' + message + ' D:');
+
+			},
+
+			resizeFuncs: function() {
+
+				instance.public_methods.pause();
+				instance.public_methods.widthAdjustments();
+				window.clearTimeout(instance.resizeTimer);
+
+				instance.resizeTimer = window.setTimeout(function(){
+
+					instance.public_methods.play();
+					instance.private_methods.swapSize();
+
+				}, 200);
 
 			},
 
@@ -261,7 +269,7 @@
 
 						if(i == 0) {
 
-							slide.attr('src', slide.attr('data-src'));
+							slide.attr('src', slide.attr('data-'+instance.private_methods.deriveSize()));
 
 						}
 
@@ -272,7 +280,7 @@
 				transition: function(direction, difference) {
 
 					var targetSlide = inner.children('*[data-slide='+instance.private_methods.determinTarget(difference, direction)+']');
-					var source = 'src';
+					var source = instance.private_methods.deriveSize();
 
 					if(!(targetSlide.is('img'))) {
 
@@ -293,6 +301,61 @@
 						instance.public_methods['transition'][settings.transition][direction](difference);
 							
 					}					
+
+				}
+
+			},
+
+			swapSize : function() {
+
+				var size = instance.private_methods.deriveSize();
+				var slide = self.find('*[data-slide='+currentSlide+']');
+
+				if(!(slide.is('img'))) {
+
+					slide = slide.find('img');
+
+				}
+
+				if(slide.attr('src') != slide.data(size)) {
+
+					slide.unbind().attr('src', slide.data(size));
+
+				}
+
+			},
+
+			deriveSize : function() {
+
+				highest = 0;
+
+				if(!settings.sizes) {
+
+					return 'src';
+
+				} else if(typeof settings.sizes == 'object') {
+
+					for(var view in settings.sizes) {
+
+						if(screenSize('smaller', settings.sizes[view])) {
+
+							var size = String(view);
+
+							if(settings.sizes[view] > highest) {
+
+								highest = settings.sizes[view];
+
+							}
+
+						} else if(screenSize('larger', highest)) {
+
+							var size = 'src'
+
+						}
+
+					}
+
+					return size;
 
 				}
 
