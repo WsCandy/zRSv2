@@ -99,7 +99,7 @@ Each callback has a few values you can access to help you do what you need to do
 	trans_callback: function(e) {
 
 		this 		// The this keyword refers to the slide you're currently on.
-		e.slide 	//	The slide number you're currently on.
+		e.slide 	// The slide number you're currently on.
 
 	}
 
@@ -116,6 +116,16 @@ Methods:
 
 zRS has a few methods that you can call in order to manipulate the plugin once it's up and running, they are as follows:
 
-	Update coming soon...
+	$('.slider').zRS('transition', 'forward');	// Transitions forward 1 slide
+	$('.slider').zRS('transition', 'back');		// Transition back 1 slide
+	$('.slider').zRS('goTo', 0);				// Go to the specified slide! 0 is the first slide.
+
+	$('.slider').zRS('pause');					// This will pause the slider
+	$('.slider').zRS('play');					// This will resume the slider
+
+	$('.slider').zRS('setVisibleSlides', 2);	// This will set the current number of visible slides
+
+	$('.slider').zRS('widthAdjustments');		// Update the width calculations for the slides
+
 
 Bind them to whatever events you need to!
