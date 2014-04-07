@@ -72,11 +72,11 @@ Callbacks:
 
 Each callback has a few values you can access to help you do what you need to do, listed below are all the properties you can access.
 
-### Pre Transition Callback
+##### Pre Transition Callback
 
-### Transition Callback
+##### Transition Callback
 
-### Load Callback
+##### Load Callback
 
 Methods:
 ---
