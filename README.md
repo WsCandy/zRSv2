@@ -45,7 +45,20 @@ Use the following HTML structure when implementing the slider to your webpage.
 
 Use the following JS structure when implementing the slider to your webpage.
 
-	Update coming soon...
+	$(document).ready(function() {
+
+		$('.slider').zRS();		// Uses default options below
+		$('.slider').zRS({		// Set your own options!
+
+			speed: 500,
+			delay: 7000,
+			transition: 'fade'
+
+		});
+
+		$('.slider').zRS('transition', 'forward'); 	// Firing a method, full list below!
+
+	});
 
 Some options aren't compatable with one another, make sure you check the console if things aren't working correctly, you will get an error message that gives you more insight.
 
