@@ -86,7 +86,7 @@ Callbacks:
 
 Each callback has a few values you can access to help you do what you need to do, listed below are all the properties you can access.
 
-###### Pre Transition Callback
+##### Pre Transition Callback
 	
 	pre_trans_callback: function(e) {
 
@@ -95,7 +95,7 @@ Each callback has a few values you can access to help you do what you need to do
 
 	}
 
-###### Transition Callback
+##### Transition Callback
 
 	trans_callback: function(e) {
 
@@ -104,7 +104,7 @@ Each callback has a few values you can access to help you do what you need to do
 
 	}
 
-###### Load Callback
+##### Load Callback
 
 	load_callback: function(e) {
 
@@ -150,7 +150,7 @@ Once you've set that up you will need to follow the following HTML structure wit
 
 It's as simple as that! "_blank.gif" is optional, you may leave the src attribute empty.
 
-###### Image swapping
+##### Image swapping
 
 With 2.2 you can now use the sizes option to swap images out depending on viewport size it is implemented as follows:
 
