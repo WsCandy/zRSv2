@@ -25,14 +25,7 @@ Here's a markup example for the above example.
 
 If the slide itself isn't an image then it will search the slide for the images!
 
-Options:
----
-
-Here's a list of options with all their defualt values:
-
-	Update coming soon...
-
-Implementation:
+Basic Implementation:
 ---
 
 Use the following HTML structure when implementing the slider to your webpage.
@@ -50,12 +43,29 @@ Use the following HTML structure when implementing the slider to your webpage.
 		</div>
 	</div>
 
-Basic Implementation:
----
+Use the following JS structure when implementing the slider to your webpage.
 
 	Update coming soon...
 
-Some options aren't compatable with one another, make sure you check the console if things aren't working correctly, you will get an error message that gives you more insight
+Some options aren't compatable with one another, make sure you check the console if things aren't working correctly, you will get an error message that gives you more insight.
+
+Options:
+---
+
+Here's a list of options with all their defualt values:
+
+	delay: 5000, 				// The amount of time before the slide transitions automatically, set to 0 to turn off automatic transition.
+	speed : 1000, 				// The speed of the animation.
+	transition : 'slide', 		// Transition type, currently 'slide' and 'fade' are the only ones.
+	procedural : false, 		// Proceedural image loading, more info below.
+	pager : false, 				// A selector for pagination e.g. $('.pager').
+	pauseOnHover : false, 		// Explains itself!
+	visibleSlides : 1, 			// The number of slides visible at anytime, not comatable with fade.
+	slideSpacing : 0,			// The spacing in pixels between each slide.
+	pre_trans_callback : null,	// A callback just before the slide transitions.
+	trans_callback : null, 		// A callback for when the slide has finished it's transition.
+	load_callback : null,		// A callback for when the slide has finished loading.
+	sizes: null 				// An object full of sizes to swap out for smaller images on mobile devices.
 
 Methods:
 ---
