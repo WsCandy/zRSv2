@@ -1,30 +1,29 @@
-zRS - Responsive Slider - v2.2
+zRS - Responsive Slider - v2.3
 ===
 
-2.2 Update:
+2.3 Update:
 ---
 
-Added additional options to support image swapping on smaller viewports, this can be invoked by using the following structure:
+Added additional options for adjusting visible slides depending on viewport.
 
-	$('.slider').zRS({
+	$(document).ready(function() {
 
-		procedural: true,
-		sizes: {
+		$('.slider').zRS({
 
-			mobile : 480,
-			tablet : 768
+			visibleSlides: 4,
+			setVisibleSlides: {
 
-		}
+				800: 3,
+				600: 2,
+				400: 1
+
+			}
+
+		});
 
 	});
 
-The labels 'mobile' and 'tablet' are just examples you can use any label and any sizes. The number in the option refers to which data attribute will be read if the screensize is SMALLER than the number; data-src will be used if it's larger than the highest value.
-
-Here's a markup example for the above example.
-
-	<img src="_blank.gif" alt="example" data-src="highres.jpg" data-tablet="midres.jpg" data-mobile="smallres.jpg" />
-
-If the slide itself isn't an image then it will search the slide for the images!
+Set up in a similar way to the sizes option you can now specify a viewport width and then specify how many visible slides you want it to show BELOW that resolution. As a results of the new option the "setVisibleSlides" method has been removed.
 
 Basic Implementation:
 ---
@@ -75,6 +74,7 @@ Here's a list of options with all their defualt values:
 	pager : false, 				// A selector for pagination e.g. $('.pager').
 	pauseOnHover : false, 		// Explains itself!
 	visibleSlides : 1, 			// The number of slides visible at anytime, not comatable with fade.
+	setVisiblrSlides : null,	// Pass an object through to set the number of visible slides depending on viewport width.
 	slideSpacing : 0,			// The spacing in pixels between each slide.
 	pre_trans_callback : null,	// A callback just before the slide transitions.
 	trans_callback : null, 		// A callback for when the slide has finished it's transition.
@@ -123,8 +123,6 @@ zRS has a few methods that you can call in order to manipulate the plugin once i
 
 	$('.slider').zRS('pause');					// This will pause the slider
 	$('.slider').zRS('play');					// This will resume the slider
-
-	$('.slider').zRS('setVisibleSlides', 2);	// This will set the current number of visible slides
 
 	$('.slider').zRS('widthAdjustments');		// Update the width calculations for the slides
 

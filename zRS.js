@@ -1,6 +1,25 @@
+function screenSize(compare, size) {
+	switch (compare) {
+		case 'smaller':
+			if(document.documentElement.clientWidth <= size) {
+				return true;
+			} else {
+				return false;
+			}
+		break;
+		case 'larger':
+			if(document.documentElement.clientWidth > size) {
+				return true;
+			} else {
+				return false;
+			}
+		break;
+	}
+};
+
 ;(function() {
 
-	var version = '2.2',
+	var version = '2.3',
 		pluginName = 'zRS';
 
 	$.fn.zRS = function(options, param) {
@@ -71,6 +90,7 @@
 			pager : false,
 			pauseOnHover : false,
 			visibleSlides : 1,
+			setVisibleSlides : null,
 			slideSpacing : 0,
 			pre_trans_callback : null,
 			trans_callback : null,
@@ -84,7 +104,8 @@
 		var inner = self.data('inner') == undefined ? self.children('.inner-slider') : self.data('inner'),
 			slides = inner.children(),
 			slideCount = slides.length,
-			currentSlide = 0;
+			currentSlide = 0,
+			mostVisible = settings.visibleSlides;
 
 		instance.private_methods = {
 
@@ -174,6 +195,8 @@
 
 				instance.public_methods.pause();
 				instance.public_methods.widthAdjustments();
+				instance.private_methods.setVisibleSlides();
+
 				window.clearTimeout(instance.resizeTimer);
 
 				instance.resizeTimer = window.setTimeout(function(){
@@ -356,6 +379,33 @@
 					}
 
 					return size;
+
+				}
+
+			},
+
+			setVisibleSlides: function(number) {
+
+				if(!settings.setVisibleSlides) {
+
+					return false;
+
+				} else if(typeof settings.setVisibleSlides == 'object') {
+
+					for(var size in settings.setVisibleSlides) {
+
+						if(screenSize('smaller', size)) {
+
+							settings.visibleSlides = settings.setVisibleSlides[size];
+							return false;
+
+						} else if(screenSize('larger', size)) {
+
+							settings.visibleSlides = mostVisible;
+
+						}
+
+					}
 
 				}
 
@@ -661,41 +711,6 @@
 
 				},
 
-				setVisibleSlides: function(number) {
-
-					if(number <= 0) {
-
-						return "0 or less...? Seriously?";
-
-					}
-
-					if(settings.transition == 'fade') {
-
-						instance.private_methods.error('You can only have one slide visible with fade!');
-						return "Oh noes :(";
-
-					}
-
-					if(typeof number != 'number') {
-
-						instance.private_methods.error('You need to set a number!');
-						return "Oh noes :(";
-
-					} else {
-
-						instance.public_methods.pause();
-						settings.visibleSlides = number;
-						instance.public_methods.widthAdjustments();			
-						instance.public_methods.play();
-
-					}
-
-					var des = number == 1 ? 'is ' : 'are ';
-
-					return "Wow...! Look now there " + des + number+"!";
-
-				},
-
 				goTo: function(target) {
 
 					var difference = target - currentSlide;
@@ -759,15 +774,13 @@ $(document).ready(function() {
 	$('.slider').zRS({
 
 		pauseOnHover: true,
-		transition: 'fade',
 		pager: $('.pager'),
-		pre_trans_callback: function(e) {
+		visibleSlides: 4,
+		setVisibleSlides: {
 
-
-		},
-
-		trans_callback: function(e) {
-
+			800: 3,
+			600: 2,
+			400: 1
 
 		}
 
