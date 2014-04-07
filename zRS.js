@@ -46,7 +46,7 @@
 
 				} else {
 
-					instance.private_methods.error(options + ' is not a defined method! Here\'s a list of methods! https://github.com/WsCandy/zRS#methods');
+					instance.private_methods.error(options + ' is not a defined method! Here\'s a list of methods! https://github.com/WsCandy/zRSv2#methods');
 
 				}
 
