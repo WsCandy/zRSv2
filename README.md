@@ -173,3 +173,5 @@ Here's a markup example for the above example.
 	<img src="_blank.gif" alt="example" data-src="highres.jpg" data-tablet="midres.jpg" data-mobile="smallres.jpg" />
 
 If the slide itself isn't an image then it will search the slide for the images!
+
+** Proceedural loading is still work in progress, it will work perfectly for fade transitions however due to the nature of the slide transition it won't function properly if there is more than one visible slide OR you jump from slide 1 to 4 for example. This issue will be addressed in future updates. **
