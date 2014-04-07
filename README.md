@@ -67,6 +67,17 @@ Here's a list of options with all their defualt values:
 	load_callback : null,		// A callback for when the slide has finished loading.
 	sizes: null 				// An object full of sizes to swap out for smaller images on mobile devices.
 
+Callbacks:
+---
+
+Each callback has a few values you can access to help you do what you need to do, listed below are all the properties you can access.
+
+### Pre Transition Callback
+
+### Transition Callback
+
+### Load Callback
+
 Methods:
 ---
 
