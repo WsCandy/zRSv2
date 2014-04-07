@@ -1,5 +1,32 @@
-zRS - Responsive Slider, v2.1
+zRS - Responsive Slider - v2.2
 ===
+
+2.2 Update:
+---
+
+Added additional options to support image swapping on smaller viewports, this can be invoked by using the following structure:
+
+	$('.slider').zRS({
+
+		sizes: {
+
+			mobile : 480,
+			tablet : 768
+
+		}
+
+	});
+
+The labels 'mobile' and 'tablet' are just examples you can use any label and any sizes. The number in the option refers to which data attribute will be read if the screensize is SMALLER than the number; data-src will be used if it's larger than the highest value.
+
+Here's a markup example for the above example.
+
+	<img src="_blank.gif" alt="example" data-src="highres.jpg" data-tablet="midres.jpg" data-mobile="smallres.jpg" />
+
+If the slide itself isn't an image then it will search the slide for the images!
+
+Options:
+---
 
 Here's a list of options with all their defualt values:
 
