@@ -72,11 +72,31 @@ Callbacks:
 
 Each callback has a few values you can access to help you do what you need to do, listed below are all the properties you can access.
 
-##### Pre Transition Callback
+###### Pre Transition Callback
+	
+	pre_trans_callback: function(e) {
 
-##### Transition Callback
+		this 		// The this keyword refers to the slide that you are transitioning to.
+		e.target 	// The slide number you are going to.
 
-##### Load Callback
+	}
+
+###### Transition Callback
+
+	trans_callback: function(e) {
+
+		this 		// The this keyword refers to the slide you're currently on.
+		e.slide 	//	The slide number you're currently on.
+
+	}
+
+###### Load Callback
+
+	load_callback: function(e) {
+
+		this 		// The this keyword refers to the main slider container.
+ 
+	}
 
 Methods:
 ---
