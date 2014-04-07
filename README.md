@@ -8,6 +8,7 @@ Added additional options to support image swapping on smaller viewports, this ca
 
 	$('.slider').zRS({
 
+		procedural: true,
 		sizes: {
 
 			mobile : 480,
@@ -129,3 +130,46 @@ zRS has a few methods that you can call in order to manipulate the plugin once i
 
 
 Bind them to whatever events you need to!
+
+Procedural Loading Implementation:
+---
+
+This version supports dynamic loading in of images as the slider transitions, saving a lot of time on page load, especially for sliders with large images.
+
+First thing first set the procedural option to be true in the settings. e.g.
+
+	$('.slider').zRS({
+
+		procedural : true
+
+	});
+
+Once you've set that up you will need to follow the following HTML structure with your images either inside your slides or as the slides themselves.
+
+	<img src="_blank.gif" alt="Example" data-src="image.jpg" />
+
+It's as simple as that! "_blank.gif" is optional, you may leave the src attribute empty.
+
+###### Image swapping
+
+With 2.2 you can now use the sizes option to swap images out depending on viewport size it is implemented as follows:
+
+	$('.slider').zRS({
+
+		procedural: true,
+		sizes: {
+
+			mobile : 480,
+			tablet : 768
+
+		}
+
+	});
+
+The labels 'mobile' and 'tablet' are just examples you can use any label and any sizes. The number in the option refers to which data attribute will be read if the screensize is SMALLER than the number; data-src will be used if it's larger than the highest value.
+
+Here's a markup example for the above example.
+
+	<img src="_blank.gif" alt="example" data-src="highres.jpg" data-tablet="midres.jpg" data-mobile="smallres.jpg" />
+
+If the slide itself isn't an image then it will search the slide for the images!
