@@ -155,7 +155,6 @@ function screenSize(compare, size) {
 					
 					if(slides.is(':hidden')) {
 
-						slides.eq(0).show();
 						self.find('.inner-slider').css({
 
 							'height' : 'auto'
@@ -501,6 +500,8 @@ function screenSize(compare, size) {
 
 						setUp: function() {
 
+							slides.eq(0).show();
+
 							slides.css({
 
 								'top' : '0px',
@@ -612,6 +613,7 @@ function screenSize(compare, size) {
 						setUp: function() {
 							
 							slides.wrapAll('<div class="carousel" />');
+							slides.show();
 							inner = self.children('.inner-slider').children('.carousel');
 
 							self.data('inner', inner);

@@ -1,5 +1,10 @@
-zRS - Responsive Slider - v2.3
+zRS - Responsive Slider - v2.3.1
 ===
+
+2.3.1 Update
+---
+
+Fixed width calculations for the slide transition and moved showing slides functionality to transition setup functions.
 
 2.3 Update:
 ---
