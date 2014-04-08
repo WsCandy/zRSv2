@@ -703,7 +703,7 @@ function screenSize(compare, size) {
 
 						inner.css({
 
-							'width' : (inner.parent().width() * slideCount) / settings.visibleSlides + 'px'
+							'width' : Math.ceil(inner.parent().width() * slideCount) / settings.visibleSlides + 'px'
 
 						});
 						
