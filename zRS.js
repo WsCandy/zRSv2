@@ -19,7 +19,7 @@ function screenSize(compare, size) {
 
 ;(function() {
 
-	var version = '2.3.1',
+	var version = '2.4.0',
 		pluginName = 'zRS';
 
 	$.fn.zRS = function(options, param) {
@@ -92,6 +92,7 @@ function screenSize(compare, size) {
 			visibleSlides : 1,
 			setVisibleSlides : null,
 			slideSpacing : 0,
+			touch : false,
 			pre_trans_callback : null,
 			trans_callback : null,
 			sizes: null,
@@ -105,7 +106,9 @@ function screenSize(compare, size) {
 			slides = inner.children(),
 			slideCount = slides.length,
 			currentSlide = 0,
-			mostVisible = settings.visibleSlides;
+			mostVisible = settings.visibleSlides,
+			startX,
+			startY;
 
 		instance.private_methods = {
 
@@ -126,6 +129,12 @@ function screenSize(compare, size) {
 				} else if(typeof settings.pager == 'object' && settings.pager.size() <= 0) {
 
 					instance.private_methods.error('Pager container not found!');
+
+				}
+
+				if(settings.touch == true) {
+
+					instance.private_methods['touch'].setUp();
 
 				}
 
@@ -442,6 +451,59 @@ function screenSize(compare, size) {
 
 						settings.pager.children().removeClass();
 						settings.pager.children('a[data-target='+targetSlide+']').addClass('active');
+
+					}
+
+				}
+
+			},
+
+			touch : {
+
+				setUp: function() {
+
+					self.on('touchstart', function(e) {
+
+						startX = instance.private_methods.touch.pos(e.originalEvent.touches[0].pageX, 'x');
+						startY = instance.private_methods.touch.pos(e.originalEvent.touches[0].pageY, 'y');
+
+					});
+
+					self.on('touchmove', function(e) {
+
+						e.preventDefault();
+
+					});
+
+					self.on('touchcancel, touchend', function(e) {
+
+						var x = instance.private_methods.touch.pos(e.originalEvent.changedTouches[0].pageX, 'x');
+						var y = instance.private_methods.touch.pos(e.originalEvent.changedTouches[0].pageY, 'y');
+
+						instance.private_methods.touch.end(x, y);
+
+					});
+
+				},
+
+				pos: function(local, coOrd) {
+
+					var x = Math.round(local - self.offset().left);
+					var y = Math.round(local - self.offset().top);
+
+					return coOrd == 'x' ? x : y;
+
+				},
+
+				end: function(x, y) {
+
+					if(x < (startX - 100)) {
+
+						instance.public_methods.transition.handler('forward');
+
+					} else if(x > (startX + 100)) {
+
+						instance.public_methods.transition.handler('back');
 
 					}
 
@@ -777,14 +839,8 @@ $(document).ready(function() {
 
 		pauseOnHover: true,
 		pager: $('.pager'),
-		visibleSlides: 4,
-		setVisibleSlides: {
-
-			800: 3,
-			600: 2,
-			400: 1
-
-		}
+		visibleSlides: 1,
+		touch: true
 
 	});
 

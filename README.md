@@ -1,34 +1,16 @@
-zRS - Responsive Slider - v2.3.1
+zRS - Responsive Slider - v2.4.0
 ===
 
-2.3.1 Update
+2.4.0 Update
 ---
 
-Fixed width calculations for the slide transition and moved showing slides functionality to transition setup functions.
+Touch is now supported! To enable touch simply add the option below when you initialise the slider and it will enable swipes to transition. Currently working on Android and iOS.
 
-2.3 Update:
----
+	$('.slider').zRS({
 
-Added additional options for adjusting visible slides depending on viewport.
-
-	$(document).ready(function() {
-
-		$('.slider').zRS({
-
-			visibleSlides: 4,
-			setVisibleSlides: {
-
-				800: 3,
-				600: 2,
-				400: 1
-
-			}
-
-		});
+		touch: true
 
 	});
-
-Set up in a similar way to the sizes option you can now specify a viewport width and then specify how many visible slides you want it to show BELOW that resolution. As a results of the new option the "setVisibleSlides" method has been removed.
 
 Basic Implementation:
 ---
@@ -178,3 +160,27 @@ Here's a markup example for the above example.
 If the slide itself isn't an image then it will search the slide for the images!
 
 ** Proceedural loading is still work in progress, it will work perfectly for fade transitions however due to the nature of the slide transition it won't function properly if there is more than one visible slide OR you jump from slide 1 to 4 for example. This issue will be addressed in future updates. **
+
+Visible Slides
+---
+
+The 2.3 update added additional options for adjusting visible slides depending on viewport.
+
+	$(document).ready(function() {
+
+		$('.slider').zRS({
+
+			visibleSlides: 4,
+			setVisibleSlides: {
+
+				800: 3,
+				600: 2,
+				400: 1
+
+			}
+
+		});
+
+	});
+
+Set up in a similar way to the sizes option you can now specify a viewport width and then specify how many visible slides you want it to show BELOW that resolution. As a results of the new option the "setVisibleSlides" method has been removed.
