@@ -66,7 +66,8 @@ Here's a list of options with all their defualt values:
 	pre_trans_callback : null,	// A callback just before the slide transitions.
 	trans_callback : null, 		// A callback for when the slide has finished it's transition.
 	load_callback : null,		// A callback for when the slide has finished loading.
-	sizes: null 				// An object full of sizes to swap out for smaller images on mobile devices.
+	sizes: null, 				// An object full of sizes to swap out for smaller images on mobile devices.
+	touch: false				// Enable touch transitions for touch devices
 
 Callbacks:
 ---
