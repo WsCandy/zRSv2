@@ -88,6 +88,7 @@ Here's a list of options with all their defualt values:
 	load_callback : null,		// A callback for when the slide has finished loading.
 	sizes: null, 				// An object full of sizes to swap out for smaller images on mobile devices.
 	touch: false				// Enable touch transitions for touch devices
+	backstretch: false			// Enable backgroung image cropping and resizing
 
 Callbacks:
 ---
