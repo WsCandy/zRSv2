@@ -1,16 +1,36 @@
-zRS - Responsive Slider - v2.4.0
+zRS - Responsive Slider - v2.5.0
 ===
 
-2.4.0 Update
+2.5.0 Update
 ---
 
-Touch is now supported! To enable touch simply add the option below when you initialise the slider and it will enable swipes to transition. Currently working on Android and iOS.
+Backstretching! Backstretch is now supported! To invoke this new functionality simply add it to the options.
 
 	$('.slider').zRS({
 
-		touch: true
+		backstretch: true
 
 	});
+
+By using the backstretch option you will be able to use the images as background for your site. The code reads the size of your slider container and crops the image accordingly and keeps it centered at the same time. It works with both slide and fade transitions, howeve the slide transition will NOT centre the image in the slider viewport as this causes a few qwerky effects. It will be looked at in the future.
+
+For super awesomeness combine backstretch with the procedural loading and image swapping options for a faster site!
+
+	$('.slider').zRS({
+
+		backstretch: true,
+		procedural: true,
+		sizes: {
+
+			mobile : 400,
+			tablet : 700,
+			desktop : 1000
+
+		}
+
+	});
+
+Enjoy!	
 
 Basic Implementation:
 ---
@@ -185,3 +205,14 @@ The 2.3 update added additional options for adjusting visible slides depending o
 	});
 
 Set up in a similar way to the sizes option you can now specify a viewport width and then specify how many visible slides you want it to show BELOW that resolution. As a results of the new option the "setVisibleSlides" method has been removed.
+
+Touch
+---
+
+Touch is now supported! To enable touch simply add the option below when you initialise the slider and it will enable swipes to transition. Currently working on Android and iOS.
+
+	$('.slider').zRS({
+
+		touch: true
+
+	});

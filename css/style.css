@@ -35,18 +35,26 @@ body {
       top: 0;
       left: 0; }
 
-.pager {
+.pager, .bs-pager {
   position: absolute;
   top: 20px;
   left: 20px;
   z-index: 5; }
-  .pager a {
+  .pager a, .bs-pager a {
     border: 1px solid #FFF;
     width: 10px;
     height: 10px;
     border-radius: 50%;
     float: left;
     margin: 0 3px; }
-    .pager a:hover, .pager a.active {
+    .pager a:hover, .pager a.active, .bs-pager a:hover, .bs-pager a.active {
       background: #FFF;
       cursor: pointer; }
+
+.backstretch {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0; }
