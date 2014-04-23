@@ -93,6 +93,7 @@ function screenSize(compare, size) {
 			setVisibleSlides : null,
 			slideSpacing : 0,
 			touch : false,
+			backstretch : false,
 			pre_trans_callback : null,
 			trans_callback : null,
 			sizes: null,
@@ -162,6 +163,12 @@ function screenSize(compare, size) {
 
 					instance.public_methods['transition'][settings.transition].setUp();
 					
+					if (settings.backstretch == true) {
+
+						instance.private_methods['backstretch'].setUp();
+
+					}
+
 					if(slides.is(':hidden')) {
 
 						self.find('.inner-slider').css({
@@ -204,6 +211,12 @@ function screenSize(compare, size) {
 				instance.public_methods.pause();
 				instance.public_methods.widthAdjustments();
 				instance.private_methods.setVisibleSlides();
+
+				if(settings.backstretch == true) {
+
+					instance.private_methods['backstretch'].sizes();
+					
+				}
 
 				window.clearTimeout(instance.resizeTimer);
 
@@ -509,6 +522,92 @@ function screenSize(compare, size) {
 
 				}
 
+			},
+
+			backstretch : {
+
+				setUp: function() {
+
+					self.css({
+
+						'overflow' : 'hidden'
+
+					});
+
+					if(settings.transition == 'slide') {
+
+						inner.css({
+
+							'width' : Math.ceil(inner.parent().width() * (slideCount + 1)) / settings.visibleSlides + 'px'
+
+						});
+
+					}
+
+					instance.private_methods['backstretch'].sizes();
+
+				},
+
+				sizes: function() {
+
+					var sliderWidth = self.outerWidth();
+					var sliderHeight = self.outerHeight();
+
+					for(var i = 0; i < slides.length; i++) { 
+						
+						var slide = $(slides[i]);
+						var slideWidth = slide.outerWidth();
+						var slideHeight = slide.outerHeight();
+
+						slide.css({
+
+							'height' : sliderHeight + 'px',
+							'width' : 'auto'							
+
+						});
+
+						slideWidth = slide.outerWidth();
+						slideHeight = slide.outerHeight();			
+
+						if(slideWidth < sliderWidth) {
+
+							slide.css({
+
+								'width' : sliderWidth + 'px',
+								'height' : 'auto'
+
+							});	
+
+						}
+
+						if(settings.transition == 'fade') {
+
+							if (sliderWidth < slideWidth) {
+
+								slide.css({
+								
+									'left' : sliderWidth / 2 +'px',
+									'margin-left' : '-' + slideWidth / 2 + 'px'
+
+								});
+
+							} else {
+
+								slide.css({
+								
+									'left' : '0',
+									'margin-left' : '0px'
+
+								});
+
+							}							
+
+						}
+
+					}
+
+				}
+
 			}
 
 		};
@@ -757,7 +856,7 @@ function screenSize(compare, size) {
 
 				widthAdjustments: function() {
 
-					if(settings.transition != 'fade') {
+					if(settings.transition != 'fade' && settings.backstretch != true) {
 
 						slides.css({
 
@@ -837,10 +936,18 @@ $(document).ready(function() {
 
 	$('.slider').zRS({
 
-		pauseOnHover: true,
 		pager: $('.pager'),
 		visibleSlides: 1,
 		touch: true
+
+	});
+
+	$('.backstretch').zRS({
+
+		pager: $('.bs-pager'),
+		backstretch : true,
+		transition: 'fade',
+		procedural: true
 
 	});
 
