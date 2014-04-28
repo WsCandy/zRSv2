@@ -1,12 +1,16 @@
-zRS - Responsive Slider - v2.5.1
+zRS - Responsive Slider - v2.5.2
 ===
 
-2.5.1 Update
+2.5.2 Update
 ---
 
-Procedural Fix
+Added extra selector for pre_transcallback
 
-Fixed an issue with procedural loading and backstetch width calculations.
+	pre_trans_callback: function(e) {
+
+		e.current 	// The current slide you're on, before transition.
+
+	}
 
 2.5.0 Update
 ---
@@ -108,6 +112,7 @@ Each callback has a few values you can access to help you do what you need to do
 
 		this 		// The this keyword refers to the slide that you are transitioning to.
 		e.target 	// The slide number you are going to.
+		e.current 	// The current slide you're on, before transition.
 
 	}
 

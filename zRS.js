@@ -633,7 +633,8 @@ function screenSize(compare, size) {
 
 								settings.pre_trans_callback.call($('.slide[data-slide="'+target+'"]'), {
 
-									target: target
+									target: target,
+									current: slides.eq(currentSlide)
 
 								});
 
