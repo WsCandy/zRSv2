@@ -1,5 +1,12 @@
-zRS - Responsive Slider - v2.5.0
+zRS - Responsive Slider - v2.5.1
 ===
+
+2.5.1 Update
+---
+
+Procedural Fix
+
+Fixed an issue with procedural loading and backstetch width calculations.
 
 2.5.0 Update
 ---
