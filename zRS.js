@@ -336,6 +336,7 @@ function screenSize(compare, size) {
 
 						targetSlide.unbind().load(function(){
 
+							settings.backstretch ? instance.private_methods['backstretch'].sizes() : '';
 							instance.public_methods['transition'][settings.transition][direction](difference);
 
 						}).attr('src', targetSlide.data(source));
