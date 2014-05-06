@@ -4,13 +4,7 @@ zRS - Responsive Slider - v2.5.3
 2.5.3 Update
 ---
 
-Added extra selector for pre_transcallback
-
-	pre_trans_callback: function(e) {
-
-		e.current 	// The current slide you're on, before transition.
-
-	}
+Bug fix for spamming procedural transitions.
 
 2.5.0 Update
 ---
