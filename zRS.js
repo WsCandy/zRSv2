@@ -625,8 +625,6 @@ function screenSize(compare, size) {
 
 					handler: function(direction, difference) {
 
-						console.log(instance.loading);
-
 						if(slides.is(':animated') || inner.is(':animated') || instance.loading) {
 
 							return "Be Patient, let it finish its tranistion...";
