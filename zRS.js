@@ -19,7 +19,7 @@ function screenSize(compare, size) {
 
 ;(function() {
 
-	var version = '2.5.2',
+	var version = '2.5.3',
 		pluginName = 'zRS';
 
 	$.fn.zRS = function(options, param) {
