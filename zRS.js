@@ -19,7 +19,7 @@ function screenSize(compare, size) {
 
 ;(function() {
 
-	var version = '2.5.1',
+	var version = '2.5.2',
 		pluginName = 'zRS';
 
 	$.fn.zRS = function(options, param) {
@@ -110,6 +110,8 @@ function screenSize(compare, size) {
 			mostVisible = settings.visibleSlides,
 			startX,
 			startY;
+
+		instance.loading = false;
 
 		instance.private_methods = {
 
@@ -322,6 +324,8 @@ function screenSize(compare, size) {
 				},
 
 				transition: function(direction, difference) {
+					
+					instance.loading = true;
 
 					var targetSlide = inner.children('*[data-slide='+instance.private_methods.determinTarget(difference, direction)+']');
 					var source = instance.private_methods.deriveSize();
@@ -337,12 +341,14 @@ function screenSize(compare, size) {
 						targetSlide.unbind().load(function(){
 
 							settings.backstretch ? instance.private_methods['backstretch'].sizes() : '';
-							instance.public_methods['transition'][settings.transition][direction](difference);
+							instance.loading = false;
+							instance.public_methods['transition'][settings.transition][direction](difference);							
 
 						}).attr('src', targetSlide.data(source));
 
 					} else {
 						
+						instance.loading = false;
 						instance.public_methods['transition'][settings.transition][direction](difference);
 							
 					}					
@@ -619,7 +625,9 @@ function screenSize(compare, size) {
 
 					handler: function(direction, difference) {
 
-						if(slides.is(':animated') || inner.is(':animated')) {
+						console.log(instance.loading);
+
+						if(slides.is(':animated') || inner.is(':animated') || instance.loading) {
 
 							return "Be Patient, let it finish its tranistion...";
 
