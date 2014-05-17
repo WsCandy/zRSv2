@@ -19,7 +19,7 @@ function screenSize(compare, size) {
 
 ;(function() {
 
-	var version = '2.5.3',
+	var version = '2.6.0',
 		pluginName = 'zRS';
 
 	$.fn.zRS = function(options, param) {
@@ -858,13 +858,96 @@ function screenSize(compare, size) {
 
 						}
 
+					},
+
+					verticalSlide: {
+
+						setUp: function() {
+							
+							slides.wrapAll('<div class="carousel" />');
+							slides.show();
+							inner = self.children('.inner-slider').children('.carousel');
+
+							self.data('inner', inner);
+
+							inner.css({
+
+								'position' : 'relative'
+
+							});
+
+							slides.css({
+
+								'float' : 'left',
+								'margin-left' : settings.slideSpacing / 2 + 'px',
+								'margin-right' : settings.slideSpacing / 2 + 'px'
+
+							});							
+
+							instance.public_methods.widthAdjustments();
+
+						},
+
+						forward: function(difference) {
+
+							inner.animate({
+
+								'top' : '-' + slides.outerHeight(true) * difference + 'px'
+
+
+							}, settings.speed, function(){
+
+								inner.css({
+
+									'top' : '0px'
+
+								});
+
+								for(var i = 0; i < difference; i++) {
+
+									inner.children(':first-child').appendTo(inner);
+
+								}
+
+								instance.private_methods.updateCurrentSlide(difference, 'forward');
+
+							});
+
+						},
+
+						back: function(difference) {
+
+							for(var i = 0; i > difference; i--) {
+
+								inner.children(':last-child').prependTo(inner);
+
+							}
+
+							inner.css({
+
+								'top' : '-' + slides.outerHeight(true) * Math.abs(difference) + 'px'
+
+							});
+
+							inner.animate({
+
+								'top' : '0px'
+
+							}, settings.speed, function() {
+
+								instance.private_methods.updateCurrentSlide(difference, 'back');
+								
+							});
+
+						}
+
 					}
 
 				},
 
 				widthAdjustments: function() {
 
-					if(settings.transition != 'fade' && settings.backstretch != true) {
+					if(settings.transition == 'slide' && settings.backstretch != true) {
 
 						slides.css({
 
@@ -878,7 +961,27 @@ function screenSize(compare, size) {
 
 						});
 						
-					} 
+					} else if(settings.transition == 'verticalSlide' && settings.backstretch != true) {
+
+						slides.css({
+
+							'width' : (inner.parent().width() / settings.visibleSlides) - settings.slideSpacing + 'px'
+
+						});
+
+						inner.css({
+
+							'height' : Math.ceil(slides.height() * slideCount) / settings.visibleSlides + 'px'
+
+						});
+
+						inner.parent().css({
+
+							'height' : slides.height() + 'px'
+
+						});
+
+					}
 
 				},
 
@@ -946,7 +1049,8 @@ $(document).ready(function() {
 
 		pager: $('.pager'),
 		visibleSlides: 1,
-		touch: true
+		touch: true,
+		transition: 'verticalSlide'
 
 	});
 
