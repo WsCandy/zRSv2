@@ -1,10 +1,18 @@
-zRS - Responsive Slider - v2.5.3
+zRS - Responsive Slider - v2.6.0
 ===
 
-2.5.3 Update
+2.6.0 Update
 ---
 
-Bug fix for spamming procedural transitions.
+Added in a vertical slide transition! To invoke the new animation simply use the setting, "transition : 'verticalSlide'". See below for an example!
+
+	$('.slider').zRS({
+
+		transition: 'verticalSlide'
+
+	});
+
+Using more than one visible slide currently has side effects, this is a known issue as is being looked into.
 
 2.5.0 Update
 ---
