@@ -892,14 +892,14 @@ function screenSize(compare, size) {
 
 							inner.animate({
 
-								'left' : '-' + slides.outerWidth(true) * difference + 'px'
+								'top' : '-' + slides.outerHeight(true) * difference + 'px'
 
 
 							}, settings.speed, function(){
 
 								inner.css({
 
-									'left' : '0px'
+									'top' : '0px'
 
 								});
 
@@ -925,13 +925,13 @@ function screenSize(compare, size) {
 
 							inner.css({
 
-								'left' : '-' + slides.outerWidth(true) * Math.abs(difference) + 'px'
+								'top' : '-' + slides.outerHeight(true) * Math.abs(difference) + 'px'
 
 							});
 
 							inner.animate({
 
-								'left' : '0px'
+								'top' : '0px'
 
 							}, settings.speed, function() {
 
@@ -947,7 +947,7 @@ function screenSize(compare, size) {
 
 				widthAdjustments: function() {
 
-					if(settings.transition != 'fade' && settings.backstretch != true) {
+					if(settings.transition == 'slide' && settings.backstretch != true) {
 
 						slides.css({
 
@@ -961,7 +961,27 @@ function screenSize(compare, size) {
 
 						});
 						
-					} 
+					} else if(settings.transition == 'verticalSlide' && settings.backstretch != true) {
+
+						slides.css({
+
+							'width' : (inner.parent().width() / settings.visibleSlides) - settings.slideSpacing + 'px'
+
+						});
+
+						inner.css({
+
+							'height' : Math.ceil(slides.height() * slideCount) / settings.visibleSlides + 'px'
+
+						});
+
+						inner.parent().css({
+
+							'height' : slides.height() + 'px'
+
+						});
+
+					}
 
 				},
 
