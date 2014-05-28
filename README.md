@@ -58,6 +58,7 @@ Here's a list of options with all their defualt values:
     slideBy: 1,                 // Number of slides to move by. Set this to visibleSlides for a paging effect.
 	setVisibleSlides : null,	// Pass an object through to set the number of visible slides depending on viewport width.
 	slideSpacing : 0,			// The spacing in pixels between each slide.
+    infinite: true,             // Do slides from one end get added to the other?
 	pre_trans_callback : null,	// A callback just before the slide transitions.
 	trans_callback : null, 		// A callback for when the slide has finished it's transition.
 	load_callback : null,		// A callback for when the slide has finished loading.
