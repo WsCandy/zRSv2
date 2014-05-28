@@ -19,7 +19,7 @@ function screenSize(compare, size) {
 
 ;(function() {
 
-	var version = '2.6.0',
+	var version = '2.6.1',
 		pluginName = 'zRS';
 
 	$.fn.zRS = function(options, param) {
@@ -163,6 +163,7 @@ function screenSize(compare, size) {
 
 				$(window).load(function() {
 
+					instance.private_methods.countSlides();
 					instance.public_methods['transition'][settings.transition].setUp();
 					
 					if (settings.backstretch == true) {
@@ -205,6 +206,13 @@ function screenSize(compare, size) {
 			error: function(message) {
 
 				console.log('['+ pluginName +' v'+version+'] - ' + message + ' D:');
+
+			},
+
+			countSlides: function() {
+
+				slides = inner.children();
+				slideCount = slides.length;
 
 			},
 

@@ -1,49 +1,10 @@
-zRS - Responsive Slider - v2.6.0
+zRS - Responsive Slider - v2.6.1
 ===
 
-2.6.0 Update
+2.6.1 Update
 ---
 
-Added in a vertical slide transition! To invoke the new animation simply use the setting, "transition : 'verticalSlide'". See below for an example!
-
-	$('.slider').zRS({
-
-		transition: 'verticalSlide'
-
-	});
-
-Using more than one visible slide currently has side effects, this is a known issue as is being looked into.
-
-2.5.0 Update
----
-
-Backstretching! Backstretch is now supported! To invoke this new functionality simply add it to the options.
-
-	$('.slider').zRS({
-
-		backstretch: true
-
-	});
-
-By using the backstretch option you will be able to use the images as background for your site. The code reads the size of your slider container and crops the image accordingly and keeps it centered at the same time. It works with both slide and fade transitions, howeve the slide transition will NOT centre the image in the slider viewport as this causes a few qwerky effects. It will be looked at in the future.
-
-For super awesomeness combine backstretch with the procedural loading and image swapping options for a faster site!
-
-	$('.slider').zRS({
-
-		backstretch: true,
-		procedural: true,
-		sizes: {
-
-			mobile : 400,
-			tablet : 700,
-			desktop : 1000
-
-		}
-
-	});
-
-Enjoy!	
+Added a new private method that recounts the slides and updates the slider accordingly.
 
 Basic Implementation:
 ---
