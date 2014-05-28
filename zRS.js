@@ -726,35 +726,54 @@ function screenSize(compare, size) {
 
 							}
 
-							inner.children().eq(difference).css({
+                            if (settings.infinite) {
+                                inner.children().eq(difference).css({
 
-								'z-index' : '2'
+                                    'z-index' : '2'
 
-							}).fadeIn(settings.speed, function() {
+                                }).fadeIn(settings.speed, function() {
 
-								inner.children().eq(difference).css({
+                                    inner.children().eq(difference).css({
 
-									'position' : 'relative'
+                                        'position' : 'relative'
 
-								});
+                                    });
 
-								if (settings.infinite) {
-									// I think difference will always be 1 here.
-									for(var i = 0; i < difference; i++) {
+                                    for(var i = 0; i < difference; i++) {
 
-										inner.children().eq(0).css({
+                                        inner.children().eq(0).css({
 
-											'z-index' : '1',
-											'position' : 'absolute'
+                                            'z-index' : '1',
+                                            'position' : 'absolute'
 
-										}).appendTo(inner).hide();
+                                        }).appendTo(inner).hide();
 
-									}
-								}
+                                    }
 
-								instance.private_methods.updateCurrentSlide(difference, 'forward');
+                                    instance.private_methods.updateCurrentSlide(difference, 'forward');
 
-							});
+                                });
+                            }
+                            else {
+                                inner.children().eq(currentSlide + difference).css({
+
+                                    'z-index' : '2'
+
+                                }).fadeIn(settings.speed, function() {
+                                    $(this).css({
+                                        'position' : 'relative'
+
+                                    });
+
+                                    inner.children().eq(currentSlide).css({
+
+                                        'z-index' : '1',
+                                        'position' : 'absolute'
+                                    }).hide();
+
+                                    instance.private_methods.updateCurrentSlide(difference, 'forward');
+                                });
+                            }
 
 						},
 
@@ -766,41 +785,73 @@ function screenSize(compare, size) {
 
 							}
 
-							for(var i = 0; i > difference; i--) {
+                            if (settings.infinite) {
+                                for(var i = 0; i > difference; i--) {
 
-								inner.children(':last-child').prependTo(inner);
+                                    inner.children(':last-child').prependTo(inner);
 
-							}
+                                }
 
-							inner.children().css({
+                                inner.children().css({
 
-								'z-index' : '0'
+                                    'z-index' : '0'
 
-							});
+                                });
 
-							inner.children().eq(0).css({
+                                inner.children().eq(0).css({
 
-								'z-index' : '1',
-								'position' : 'absolute'
+                                    'z-index' : '1',
+                                    'position' : 'absolute'
 
-							}).fadeIn(settings.speed, function(){
+                                }).fadeIn(settings.speed, function(){
 
-								inner.children().eq(0).css({
+                                    inner.children().eq(0).css({
 
-									'position' : 'relative'
+                                        'position' : 'relative'
 
-								});
+                                    });
 
-								inner.children().not(':first-child').css({
+                                    inner.children().not(':first-child').css({
 
-									'z-index' : '0',
-									'position' : 'absolute'
+                                        'z-index' : '0',
+                                        'position' : 'absolute'
 
-								}).hide();
+                                    }).hide();
 
-								instance.private_methods.updateCurrentSlide(difference, 'back');
+                                    instance.private_methods.updateCurrentSlide(difference, 'back');
 
-							});
+                                });
+                            }
+                            else {
+                                var slideTo = currentSlide - Math.abs(difference);
+
+                                inner.children().css({
+
+                                    'z-index' : '0'
+
+                                });
+
+                                inner.children().eq(slideTo).css({
+
+                                    'z-index' : '1',
+                                    'position' : 'absolute'
+
+                                }).fadeIn(settings.speed, function(){
+
+                                    inner.children().eq(slideTo).css({
+
+                                        'position' : 'relative'
+
+                                    });
+
+                                    inner.children().eq(currentSlide).css({
+                                        'z-index' : '0',
+                                        'position' : 'absolute'
+                                    }).hide();
+
+                                    instance.private_methods.updateCurrentSlide(difference, 'back');
+                                });
+                            }
 
 						}
 
