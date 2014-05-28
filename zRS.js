@@ -869,7 +869,7 @@ function screenSize(compare, size) {
                             else {
                                 inner.animate({
 
-                                    'left' : '-' + slides.outerHeight(true) * (currentSlide + difference) + 'px'
+                                    'left' : '-' + slides.outerWidth(true) * (currentSlide + difference) + 'px'
 
 
                                 }, settings.speed, function(){
@@ -913,7 +913,7 @@ function screenSize(compare, size) {
                             else {
                                 inner.animate({
 
-                                    'left' : '-' + slides.outerHeight(true) * (currentSlide - Math.abs(difference)) + 'px'
+                                    'left' : '-' + slides.outerWidth(true) * (currentSlide - Math.abs(difference)) + 'px'
 
                                 }, settings.speed, function() {
 
