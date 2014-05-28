@@ -94,7 +94,7 @@ function screenSize(compare, size) {
 			slideSpacing : 0,
 			touch : false,
 			backstretch : false,
-			slideBy: 9,
+			slideBy: 1,
 			pre_trans_callback : null,
 			trans_callback : null,
 			sizes: null,
@@ -1055,25 +1055,3 @@ function screenSize(compare, size) {
 	}
 	
 })();
-
-$(document).ready(function() {
-
-	$('.slider').zRS({
-
-		pager: $('.pager'),
-		visibleSlides: 1,
-		touch: true,
-		transition: 'verticalSlide'
-
-	});
-
-	$('.backstretch').zRS({
-
-		pager: $('.bs-pager'),
-		backstretch : true,
-		transition: 'fade',
-		procedural: true
-
-	});
-
-});
