@@ -719,7 +719,7 @@ function screenSize(compare, size) {
 						},
 
 						forward: function(difference) {
-							if (! settings.infinite && currentSlide + difference > slideCount) {
+							if (! settings.infinite && currentSlide + difference >= slideCount) {
 
 									instance.private_methods.error("Trying to go past the last slide");
 									return;
@@ -886,7 +886,7 @@ function screenSize(compare, size) {
 						},
 
 						forward: function(difference) {
-							if (! settings.infinite && currentSlide + difference > slideCount) {
+							if (! settings.infinite && currentSlide + difference >= slideCount) {
 
 									instance.private_methods.error("Trying to go past the last slide");
 									return;
