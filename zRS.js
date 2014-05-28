@@ -94,6 +94,7 @@ function screenSize(compare, size) {
 			slideSpacing : 0,
 			touch : false,
 			backstretch : false,
+			slideBy: 9,
 			pre_trans_callback : null,
 			trans_callback : null,
 			sizes: null,
@@ -639,9 +640,13 @@ function screenSize(compare, size) {
 
 						} else {
 
-							var difference = typeof difference == 'undefined' ? (direction == 'back' ? -1 : 1) : difference,
-								direction = typeof direction == 'undefined' ? direction = 'forward' : direction,
-								target = instance.private_methods.determinTarget(difference);
+							difference = typeof difference == 'undefined' 
+								? (direction == 'back' ? -settings.slideBy : settings.slideBy) 
+								: difference;
+							direction = typeof direction == 'undefined' 
+								? 'forward' 
+								: direction;
+							var target = instance.private_methods.determinTarget(difference);
 
 							if($.isFunction(settings.pre_trans_callback)) {
 
