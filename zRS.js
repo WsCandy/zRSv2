@@ -60,8 +60,8 @@ function screenSize(compare, size) {
 					} else {
 
 						return instance.public_methods[options](param);
-						
-					}				
+
+					}
 
 				} else {
 
@@ -92,6 +92,7 @@ function screenSize(compare, size) {
 			visibleSlides : 1,
 			setVisibleSlides : null,
 			slideSpacing : 0,
+            infinite : true,
 			touch : false,
 			backstretch : false,
 			slideBy: 1,
@@ -166,7 +167,7 @@ function screenSize(compare, size) {
 
 					instance.private_methods.countSlides();
 					instance.public_methods['transition'][settings.transition].setUp();
-					
+
 					if (settings.backstretch == true) {
 
 						instance.private_methods['backstretch'].setUp();
@@ -192,7 +193,7 @@ function screenSize(compare, size) {
 					}
 
 					instance.public_methods.play();
-					
+
 				});
 
 				if(slideCount <= 1) {
@@ -226,7 +227,7 @@ function screenSize(compare, size) {
 				if(settings.backstretch == true) {
 
 					instance.private_methods['backstretch'].sizes();
-					
+
 				}
 
 				window.clearTimeout(instance.resizeTimer);
@@ -300,7 +301,7 @@ function screenSize(compare, size) {
 
 			markSlides: function() {
 
-				for(var i = 0; i < slideCount; i++) { 
+				for(var i = 0; i < slideCount; i++) {
 
 					inner.children().eq(i).attr('data-slide', i).addClass('slide');
 
@@ -333,7 +334,7 @@ function screenSize(compare, size) {
 				},
 
 				transition: function(direction, difference) {
-					
+
 					instance.loading = true;
 
 					var targetSlide = inner.children('*[data-slide='+instance.private_methods.determinTarget(difference, direction)+']');
@@ -351,16 +352,16 @@ function screenSize(compare, size) {
 
 							settings.backstretch ? instance.private_methods['backstretch'].sizes() : '';
 							instance.loading = false;
-							instance.public_methods['transition'][settings.transition][direction](difference);							
+							instance.public_methods['transition'][settings.transition][direction](difference);
 
 						}).attr('src', targetSlide.data(source));
 
 					} else {
-						
+
 						instance.loading = false;
 						instance.public_methods['transition'][settings.transition][direction](difference);
-							
-					}					
+
+					}
 
 				}
 
@@ -452,7 +453,7 @@ function screenSize(compare, size) {
 
 				setUp: function() {
 
-					for(var i = 0; i < slideCount; i++) { 
+					for(var i = 0; i < slideCount; i++) {
 
 						$('<a />', {
 
@@ -569,8 +570,8 @@ function screenSize(compare, size) {
 					var sliderWidth = self.outerWidth();
 					var sliderHeight = self.outerHeight();
 
-					for(var i = 0; i < slides.length; i++) { 
-						
+					for(var i = 0; i < slides.length; i++) {
+
 						var slide = $(slides[i]);
 						var slideWidth = slide.outerWidth();
 						var slideHeight = slide.outerHeight();
@@ -578,12 +579,12 @@ function screenSize(compare, size) {
 						slide.css({
 
 							'height' : sliderHeight + 'px',
-							'width' : 'auto'							
+							'width' : 'auto'
 
 						});
 
 						slideWidth = slide.outerWidth();
-						slideHeight = slide.outerHeight();			
+						slideHeight = slide.outerHeight();
 
 						if(slideWidth < sliderWidth) {
 
@@ -592,7 +593,7 @@ function screenSize(compare, size) {
 								'width' : sliderWidth + 'px',
 								'height' : 'auto'
 
-							});	
+							});
 
 						}
 
@@ -601,7 +602,7 @@ function screenSize(compare, size) {
 							if (sliderWidth < slideWidth) {
 
 								slide.css({
-								
+
 									'left' : sliderWidth / 2 +'px',
 									'margin-left' : '-' + slideWidth / 2 + 'px'
 
@@ -610,13 +611,13 @@ function screenSize(compare, size) {
 							} else {
 
 								slide.css({
-								
+
 									'left' : '0',
 									'margin-left' : '0px'
 
 								});
 
-							}							
+							}
 
 						}
 
@@ -640,11 +641,11 @@ function screenSize(compare, size) {
 
 						} else {
 
-							difference = typeof difference == 'undefined' 
-								? (direction == 'back' ? -settings.slideBy : settings.slideBy) 
+							difference = typeof difference == 'undefined'
+								? (direction == 'back' ? -settings.slideBy : settings.slideBy)
 								: difference;
-							direction = typeof direction == 'undefined' 
-								? 'forward' 
+							direction = typeof direction == 'undefined'
+								? 'forward'
 								: direction;
 							var target = instance.private_methods.determinTarget(difference);
 
@@ -665,7 +666,7 @@ function screenSize(compare, size) {
 
 							} else {
 
-								instance.public_methods['transition'][settings.transition][direction](difference);								
+								instance.public_methods['transition'][settings.transition][direction](difference);
 
 							}
 
@@ -718,28 +719,37 @@ function screenSize(compare, size) {
 						},
 
 						forward: function(difference) {
-							
+							if (! settings.infinite && currentSlide + difference > slideCount) {
+
+									instance.private_methods.error("Trying to go past the last slide");
+									return;
+
+							}
+
 							inner.children().eq(difference).css({
 
 								'z-index' : '2'
 
 							}).fadeIn(settings.speed, function() {
-							
+
 								inner.children().eq(difference).css({
 
 									'position' : 'relative'
 
 								});
-								
-								for(var i = 0; i < difference; i++) {
 
-									inner.children().eq(0).css({
+								if (settings.infinite) {
+									// I think difference will always be 1 here.
+									for(var i = 0; i < difference; i++) {
 
-										'z-index' : '1',
-										'position' : 'absolute'
+										inner.children().eq(0).css({
 
-									}).appendTo(inner).hide();
-									
+											'z-index' : '1',
+											'position' : 'absolute'
+
+										}).appendTo(inner).hide();
+
+									}
 								}
 
 								instance.private_methods.updateCurrentSlide(difference, 'forward');
@@ -748,7 +758,13 @@ function screenSize(compare, size) {
 
 						},
 
-						back : function(difference) {							
+						back: function(difference) {
+							if (! settings.infinite && currentSlide === 0) {
+
+									instance.private_methods.error("Trying to go past the first slide");
+									return;
+
+							}
 
 							for(var i = 0; i > difference; i--) {
 
@@ -787,13 +803,13 @@ function screenSize(compare, size) {
 							});
 
 						}
-						
+
 					},
 
 					slide: {
 
 						setUp: function() {
-							
+
 							slides.wrapAll('<div class="carousel" />');
 							slides.show();
 							inner = self.children('.inner-slider').children('.carousel');
@@ -812,13 +828,19 @@ function screenSize(compare, size) {
 								'margin-left' : settings.slideSpacing / 2 + 'px',
 								'margin-right' : settings.slideSpacing / 2 + 'px'
 
-							});							
+							});
 
 							instance.public_methods.widthAdjustments();
 
 						},
 
 						forward: function(difference) {
+							if (! settings.infinite && currentSlide + difference > slideCount) {
+
+									instance.private_methods.error("Trying to go past the last slide");
+									return;
+
+							}
 
 							inner.animate({
 
@@ -833,10 +855,12 @@ function screenSize(compare, size) {
 
 								});
 
-								for(var i = 0; i < difference; i++) {
+								if (settings.infinite) {
+									for(var i = 0; i < difference; i++) {
 
-									inner.children(':first-child').appendTo(inner);
+										inner.children(':first-child').appendTo(inner);
 
+									}
 								}
 
 								instance.private_methods.updateCurrentSlide(difference, 'forward');
@@ -846,6 +870,10 @@ function screenSize(compare, size) {
 						},
 
 						back: function(difference) {
+							if (! settings.infinite && currentSlide === 0) {
+									instance.private_methods.error("Trying to go past the first slide");
+									return;
+							}
 
 							for(var i = 0; i > difference; i--) {
 
@@ -866,7 +894,7 @@ function screenSize(compare, size) {
 							}, settings.speed, function() {
 
 								instance.private_methods.updateCurrentSlide(difference, 'back');
-								
+
 							});
 
 						}
@@ -876,7 +904,7 @@ function screenSize(compare, size) {
 					verticalSlide: {
 
 						setUp: function() {
-							
+
 							slides.wrapAll('<div class="carousel" />');
 							slides.show();
 							inner = self.children('.inner-slider').children('.carousel');
@@ -895,13 +923,19 @@ function screenSize(compare, size) {
 								'margin-left' : settings.slideSpacing / 2 + 'px',
 								'margin-right' : settings.slideSpacing / 2 + 'px'
 
-							});							
+							});
 
 							instance.public_methods.widthAdjustments();
 
 						},
 
 						forward: function(difference) {
+							if (! settings.infinite && currentSlide + difference > slideCount) {
+
+									instance.private_methods.error("Trying to go past the last slide");
+									return;
+
+							}
 
 							inner.animate({
 
@@ -916,10 +950,12 @@ function screenSize(compare, size) {
 
 								});
 
-								for(var i = 0; i < difference; i++) {
+								if (settings.infinite) {
+									for(var i = 0; i < difference; i++) {
 
-									inner.children(':first-child').appendTo(inner);
+										inner.children(':first-child').appendTo(inner);
 
+									}
 								}
 
 								instance.private_methods.updateCurrentSlide(difference, 'forward');
@@ -929,6 +965,10 @@ function screenSize(compare, size) {
 						},
 
 						back: function(difference) {
+							if (! settings.infinite && currentSlide === 0) {
+								   instance.private_methods.error("Trying to go past the first slide");
+								   return;
+							}
 
 							for(var i = 0; i > difference; i--) {
 
@@ -949,7 +989,7 @@ function screenSize(compare, size) {
 							}, settings.speed, function() {
 
 								instance.private_methods.updateCurrentSlide(difference, 'back');
-								
+
 							});
 
 						}
@@ -973,7 +1013,7 @@ function screenSize(compare, size) {
 							'width' : Math.ceil(inner.parent().width() * slideCount) / settings.visibleSlides + 'px'
 
 						});
-						
+
 					} else if(settings.transition == 'verticalSlide' && settings.backstretch != true) {
 
 						slides.css({
@@ -1034,8 +1074,8 @@ function screenSize(compare, size) {
 
 					if(settings.delay > 0) {
 
-						self.timer = window.setTimeout(instance.public_methods['transition'].handler, settings.delay);						
-						
+						self.timer = window.setTimeout(instance.public_methods['transition'].handler, settings.delay);
+
 					}
 
 					return "Playing!";
