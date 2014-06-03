@@ -1,10 +1,10 @@
-zRS - Responsive Slider - v2.6.1
+zRS - Responsive Slider - v2.6.2
 ===
 
-2.6.1 Update
+2.6.2 Update
 ---
 
-Added a new private method that recounts the slides and updates the slider accordingly.
+Fixed a bug that involved visibleSlides not setting properly on load.
 
 Basic Implementation:
 ---
