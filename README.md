@@ -1,10 +1,10 @@
-zRS - Responsive Slider - v2.6.2
+zRS - Responsive Slider - v2.6.3
 ===
 
-2.6.2 Update
+2.6.3 Update
 ---
 
-Fixed a bug that involved visibleSlides not setting properly on load.
+Fixed a bug that involved the slider trying to transition when there was only one slide.
 
 Basic Implementation:
 ---
