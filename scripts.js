@@ -3,9 +3,9 @@ $(document).ready(function() {
 	$('.slider').zRS({
 
 		pager: $('.pager'),
-		visibleSlides: 1,
+		visibleSlides: 2,
 		touch: true,
-		transition: 'verticalSlide',
+		transition: 'slide',
 		slideBy: 2
 
 	});
