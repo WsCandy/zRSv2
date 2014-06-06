@@ -193,16 +193,18 @@ function screenSize(compare, size) {
 
 					instance.private_methods.setVisibleSlides();
 					instance.public_methods.widthAdjustments();
+					
+					if(slideCount <= 1) {
+
+						instance.private_methods.error('Less than one slide, shutting down');
+						return false;
+
+					}
+					
 					instance.public_methods.play();
 					
 				});
 
-				if(slideCount <= 1) {
-
-					instance.private_methods.error('Less than one slide, shutting down');
-					return false;
-
-				}
 
 			},
 
