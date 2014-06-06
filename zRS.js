@@ -237,7 +237,7 @@ function screenSize(compare, size) {
 
 				instance.resizeTimer = window.setTimeout(function(){
 
-					instance.public_methods.play();
+					if(slideCount > 1) instance.public_methods.play();
 					instance.private_methods.swapSize();
 
 				}, 200);
