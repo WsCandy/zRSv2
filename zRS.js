@@ -248,7 +248,7 @@ function screenSize(compare, size) {
 
 				if(currentSlide >= slides.length -1 && direction == 'forward') {
 
-					currentSlide = 0;
+					currentSlide = -1 + difference;
 
 				} else if(currentSlide == 0 && direction == 'back') {
 
@@ -257,6 +257,12 @@ function screenSize(compare, size) {
 				} else {
 
 					currentSlide = currentSlide + difference;
+
+				}
+
+				if(currentSlide > slides.length -1) {
+
+					currentSlide = (currentSlide - slides.length);
 
 				}
 
@@ -269,6 +275,9 @@ function screenSize(compare, size) {
 					});
 
 				}
+
+				console.log(currentSlide);
+
 
 			},
 
