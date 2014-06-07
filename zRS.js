@@ -282,7 +282,7 @@ function screenSize(compare, size) {
 
 				if(currentSlide >= slides.length -1 && direction == 'forward') {
 
-					var targetSlide = 0;
+					var targetSlide = -1 + difference;
 
 				} else if(currentSlide == 0 && direction == 'back') {
 
@@ -300,7 +300,7 @@ function screenSize(compare, size) {
 
 				} else if(targetSlide > slides.length -1) {
 
-					var targetSlide = 0;
+					var targetSlide = targetSlide - slides.length;
 
 				}
 
