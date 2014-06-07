@@ -276,9 +276,6 @@ function screenSize(compare, size) {
 
 				}
 
-				console.log(currentSlide);
-
-
 			},
 
 			determinTarget: function(difference, direction) {
