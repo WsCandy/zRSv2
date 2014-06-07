@@ -1,10 +1,10 @@
-zRS - Responsive Slider - v2.6.3
+zRS - Responsive Slider - v2.6.4
 ===
 
-2.6.3 Update
+2.6.4 Update
 ---
 
-Fixed a bug that involved the slider trying to transition when there was only one slide.
+Bug fix - Current slide calculations got confused when sliding by multiple slides, this has now been fixed which in turn fixed pager markings being skewed by bad calculations.
 
 Basic Implementation:
 ---
@@ -41,29 +41,29 @@ Use the following JS structure when implementing the slider to your webpage.
 
 	});
 
-Some options aren't compatable with one another, make sure you check the console if things aren't working correctly, you will get an error message that gives you more insight.
+Some options aren't compatible with one another, make sure you check the console if things aren't working correctly, you will get an error message that gives you more insight.
 
 Options:
 ---
 
-Here's a list of options with all their defualt values:
+Here's a list of options with all their default values:
 
 	delay: 5000, 				// The amount of time before the slide transitions automatically, set to 0 to turn off automatic transition.
 	speed : 1000, 				// The speed of the animation.
 	transition : 'slide', 		// Transition type, currently 'slide' and 'fade' are the only ones.
-	procedural : false, 		// Proceedural image loading, more info below.
+	procedural : false, 		// Procedural image loading, more info below.
 	pager : false, 				// A selector for pagination e.g. $('.pager').
 	pauseOnHover : false, 		// Explains itself!
 	visibleSlides : 1, 			// The number of slides visible at anytime, not compatible with fade.
     slideBy: 1,                 // Number of slides to move by. Set this to visibleSlides for a paging effect.
-	setVisibleSlides : null,	// Pass an object through to set the number of visible slides depending on viewport width.
+	setVisibleSlides : null,	// Pass an object through to set the number of visible slides depending on view port width.
 	slideSpacing : 0,			// The spacing in pixels between each slide.
 	pre_trans_callback : null,	// A callback just before the slide transitions.
 	trans_callback : null, 		// A callback for when the slide has finished it's transition.
 	load_callback : null,		// A callback for when the slide has finished loading.
 	sizes: null, 				// An object full of sizes to swap out for smaller images on mobile devices.
 	touch: false				// Enable touch transitions for touch devices
-	backstretch: false			// Enable backgroung image cropping and resizing
+	backstretch: false			// Enable background image cropping and resizing
 
 Callbacks:
 ---
@@ -135,7 +135,7 @@ It's as simple as that! "_blank.gif" is optional, you may leave the src attribut
 
 ##### Image swapping
 
-With 2.2 you can now use the sizes option to swap images out depending on viewport size it is implemented as follows:
+With 2.2 you can now use the sizes option to swap images out depending on view port size it is implemented as follows:
 
 	$('.slider').zRS({
 
@@ -149,7 +149,7 @@ With 2.2 you can now use the sizes option to swap images out depending on viewpo
 
 	});
 
-The labels 'mobile' and 'tablet' are just examples you can use any label and any sizes. The number in the option refers to which data attribute will be read if the screensize is SMALLER than the number; data-src will be used if it's larger than the highest value.
+The labels 'mobile' and 'tablet' are just examples you can use any label and any sizes. The number in the option refers to which data attribute will be read if the screen size is SMALLER than the number; data-src will be used if it's larger than the highest value.
 
 Here's a markup example for the above example.
 
@@ -162,7 +162,7 @@ If the slide itself isn't an image then it will search the slide for the images!
 Visible Slides
 ---
 
-The 2.3 update added additional options for adjusting visible slides depending on viewport.
+The 2.3 update added additional options for adjusting visible slides depending on view port.
 
 	$(document).ready(function() {
 
@@ -181,7 +181,7 @@ The 2.3 update added additional options for adjusting visible slides depending o
 
 	});
 
-Set up in a similar way to the sizes option you can now specify a viewport width and then specify how many visible slides you want it to show BELOW that resolution. As a results of the new option the "setVisibleSlides" method has been removed.
+Set up in a similar way to the sizes option you can now specify a view port width and then specify how many visible slides you want it to show BELOW that resolution. As a results of the new option the "setVisibleSlides" method has been removed.
 
 Touch
 ---
