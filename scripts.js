@@ -5,8 +5,8 @@ $(document).ready(function() {
 		pager: $('.pager'),
 		visibleSlides: 2,
 		touch: true,
-		transition: 'slide',
-		slideBy: 2
+		transition: 'verticalSlide',
+		slideBy: 1
 
 	});
 
