@@ -1,15 +1,14 @@
 zRS - Responsive Slider - v2.6.5
 ===
 
-Release History
----
-
-https://github.com/WsCandy/zRSv2/releases
-
 2.6.5 Update
 ---
 
 Various fixes and tweaks to help reduce the number of lines. The screenSize function is now also included within the main closure and has now been made global so it can be accessed throughout the site.
+
+#####Release History
+
+https://github.com/WsCandy/zRSv2/releases
 
 Basic Implementation:
 ---
