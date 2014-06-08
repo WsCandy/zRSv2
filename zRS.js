@@ -470,7 +470,6 @@ function screenSize(compare, size) {
 
 				update: function(targetSlide) {
 
-
 					if(typeof settings.pager == 'object' && settings.pager.size() > 0) {
 
 						settings.pager.children().removeClass();
@@ -973,7 +972,7 @@ function screenSize(compare, size) {
 
 						slides.css({
 
-							'width' : (inner.parent().width() / settings.visibleSlides) - settings.slideSpacing + 'px'
+							'width' : inner.parent().width() + 'px'
 
 						});
 
@@ -985,7 +984,7 @@ function screenSize(compare, size) {
 
 						inner.parent().css({
 
-							'height' : slides.height() + 'px'
+							'height' : slides.height() * settings.visibleSlides + 'px'
 
 						});
 
