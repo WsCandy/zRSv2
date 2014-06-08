@@ -1,4 +1,4 @@
-zRS - Responsive Slider - v2.6.4
+zRS - Responsive Slider - v2.6.5
 ===
 
 2.6.5 Update
