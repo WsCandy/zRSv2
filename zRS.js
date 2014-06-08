@@ -244,41 +244,7 @@ function screenSize(compare, size) {
 
 			},
 
-			updateCurrentSlide: function(difference, direction) {
-
-				if(currentSlide >= slides.length -1 && direction == 'forward') {
-
-					currentSlide = -1 + difference;
-
-				} else if(currentSlide == 0 && direction == 'back') {
-
-					currentSlide = slideCount + difference;
-
-				} else {
-
-					currentSlide = currentSlide + difference;
-
-				}
-
-				if(currentSlide > slides.length -1) {
-
-					currentSlide = (currentSlide - slides.length);
-
-				}
-
-				if($.isFunction(settings.trans_callback)) {
-
-					settings.trans_callback.call($('.slide[data-slide="'+currentSlide+'"]'), {
-
-						slide: currentSlide
-
-					});
-
-				}
-
-			},
-
-			determinTarget: function(difference, direction) {
+			determinTarget: function(difference, direction, update) {
 
 				if(currentSlide >= slides.length -1 && direction == 'forward') {
 
@@ -304,7 +270,26 @@ function screenSize(compare, size) {
 
 				}
 
-				return targetSlide;
+				if(update == 'update') {
+
+					currentSlide = targetSlide;
+
+					if($.isFunction(settings.trans_callback)) {
+
+						settings.trans_callback.call($('.slide[data-slide="'+currentSlide+'"]'), {
+
+							slide: currentSlide
+
+						});
+
+					}
+
+				} else {
+
+					return targetSlide;
+					
+				}
+
 
 			},
 
@@ -752,7 +737,7 @@ function screenSize(compare, size) {
 									
 								}
 
-								instance.private_methods.updateCurrentSlide(difference, 'forward');
+								instance.private_methods.determinTarget(difference, 'forward', 'update');
 
 							});
 
@@ -792,7 +777,7 @@ function screenSize(compare, size) {
 
 								}).hide();
 
-								instance.private_methods.updateCurrentSlide(difference, 'back');
+								instance.private_methods.targetSlide(difference, 'back', 'update');
 
 							});
 
@@ -849,7 +834,7 @@ function screenSize(compare, size) {
 
 								}
 
-								instance.private_methods.updateCurrentSlide(difference, 'forward');
+								instance.private_methods.determinTarget(difference, 'forward', 'update');
 
 							});
 
@@ -875,7 +860,7 @@ function screenSize(compare, size) {
 
 							}, settings.speed, function() {
 
-								instance.private_methods.updateCurrentSlide(difference, 'back');
+								instance.private_methods.determinTarget(difference, 'back', 'update');
 								
 							});
 
@@ -932,7 +917,7 @@ function screenSize(compare, size) {
 
 								}
 
-								instance.private_methods.updateCurrentSlide(difference, 'forward');
+								instance.private_methods.determinTarget(difference, 'forward', 'update');
 
 							});
 
@@ -958,7 +943,7 @@ function screenSize(compare, size) {
 
 							}, settings.speed, function() {
 
-								instance.private_methods.updateCurrentSlide(difference, 'back');
+								instance.private_methods.determinTarget(difference, 'back', 'update');
 								
 							});
 
