@@ -1,6 +1,11 @@
 zRS - Responsive Slider - v2.6.5
 ===
 
+Release History
+---
+
+https://github.com/WsCandy/zRSv2/releases
+
 2.6.5 Update
 ---
 
