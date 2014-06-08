@@ -1,18 +1,18 @@
 zRS - Responsive Slider - v2.6.4
 ===
 
-2.6.4 Update
+2.6.5 Update
 ---
 
-Bug fix - Current slide calculations got confused when sliding by multiple slides, this has now been fixed which in turn fixed pager markings being skewed by bad calculations.
+Various fixes and tweaks to help reduce the number of lines. The screenSize function is now also included within the main closure and has now been made global so it can be accessed throughout the site.
 
 Basic Implementation:
 ---
 
-Use the following HTML structure when implementing the slider to your webpage.
+Use the following HTML structure when implementing the slider to your web page.
 
 	<div class="slider"> <!-- The element the slider needs to be called on -->
-		<div class="inner-slider"> <!-- Inner slider is necessary to make the plugin function correctly, make sure this is 100% width if you want it responsive! -->
+		<div class="inner-slider"> <!-- Inner slider is necessary to make the plug in function correctly, make sure this is 100% width if you want it responsive! -->
 			<img src="img/trans/1.jpg" alt="Tester" />
 			<img src="img/trans/2.jpg" alt="Tester" />
 			<img src="img/trans/3.jpg" alt="Tester" />
@@ -24,7 +24,7 @@ Use the following HTML structure when implementing the slider to your webpage.
 		</div>
 	</div>
 
-Use the following JS structure when implementing the slider to your webpage.
+Use the following JS structure when implementing the slider to your web page.
 
 	$(document).ready(function() {
 
@@ -50,17 +50,17 @@ Here's a list of options with all their default values:
 
 	delay: 5000, 				// The amount of time before the slide transitions automatically, set to 0 to turn off automatic transition.
 	speed : 1000, 				// The speed of the animation.
-	transition : 'slide', 		// Transition type, currently 'slide' and 'fade' are the only ones.
-	procedural : false, 		// Procedural image loading, more info below.
+	transition : 'slide', 			// Transition type, currently 'slide' and 'fade' are the only ones.
+	procedural : false, 			// Procedural image loading, more info below.
 	pager : false, 				// A selector for pagination e.g. $('.pager').
 	pauseOnHover : false, 		// Explains itself!
 	visibleSlides : 1, 			// The number of slides visible at anytime, not compatible with fade.
-    slideBy: 1,                 // Number of slides to move by. Set this to visibleSlides for a paging effect.
-	setVisibleSlides : null,	// Pass an object through to set the number of visible slides depending on view port width.
+    	slideBy: 1,               			// Number of slides to move by. Set this to visibleSlides for a paging effect.
+	setVisibleSlides : null,			// Pass an object through to set the number of visible slides depending on view port width.
 	slideSpacing : 0,			// The spacing in pixels between each slide.
-	pre_trans_callback : null,	// A callback just before the slide transitions.
-	trans_callback : null, 		// A callback for when the slide has finished it's transition.
-	load_callback : null,		// A callback for when the slide has finished loading.
+	pre_trans_callback : null,		// A callback just before the slide transitions.
+	trans_callback : null, 			// A callback for when the slide has finished it's transition.
+	load_callback : null,			// A callback for when the slide has finished loading.
 	sizes: null, 				// An object full of sizes to swap out for smaller images on mobile devices.
 	touch: false				// Enable touch transitions for touch devices
 	backstretch: false			// Enable background image cropping and resizing
@@ -85,7 +85,7 @@ Each callback has a few values you can access to help you do what you need to do
 	trans_callback: function(e) {
 
 		this 		// The this keyword refers to the slide you're currently on.
-		e.slide 	// The slide number you're currently on.
+		e.slide 		// The slide number you're currently on.
 
 	}
 
@@ -100,14 +100,14 @@ Each callback has a few values you can access to help you do what you need to do
 Methods:
 ---
 
-zRS has a few methods that you can call in order to manipulate the plugin once it's up and running, they are as follows:
+zRS has a few methods that you can call in order to manipulate the plug in once it's up and running, they are as follows:
 
-	$('.slider').zRS('transition', 'forward');	// Transitions forward 1 slide
+	$('.slider').zRS('transition', 'forward');		// Transitions forward 1 slide
 	$('.slider').zRS('transition', 'back');		// Transition back 1 slide
-	$('.slider').zRS('goTo', 0);				// Go to the specified slide! 0 is the first slide.
+	$('.slider').zRS('goTo', 0);			// Go to the specified slide! 0 is the first slide.
 
-	$('.slider').zRS('pause');					// This will pause the slider
-	$('.slider').zRS('play');					// This will resume the slider
+	$('.slider').zRS('pause');			// This will pause the slider
+	$('.slider').zRS('play');				// This will resume the slider
 
 	$('.slider').zRS('widthAdjustments');		// Update the width calculations for the slides
 
