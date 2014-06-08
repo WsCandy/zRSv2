@@ -1,22 +1,3 @@
-function screenSize(compare, size) {
-	switch (compare) {
-		case 'smaller':
-			if(document.documentElement.clientWidth <= size) {
-				return true;
-			} else {
-				return false;
-			}
-		break;
-		case 'larger':
-			if(document.documentElement.clientWidth > size) {
-				return true;
-			} else {
-				return false;
-			}
-		break;
-	}
-};
-
 ;(function() {
 
 	var version = '2.6.4',
@@ -1037,6 +1018,7 @@ function screenSize(compare, size) {
 				},
 
 				pause: function() {
+	
 
 					window.clearTimeout(self.timer);
 
@@ -1047,5 +1029,28 @@ function screenSize(compare, size) {
 		};
 
 	}
+
+	var screenSize = function(compare, size) {
+
+		switch (compare) {
+			case 'smaller':
+				if(document.documentElement.clientWidth <= size) {
+					return true;
+				} else {
+					return false;
+				}
+			break;
+			case 'larger':
+				if(document.documentElement.clientWidth > size) {
+					return true;
+				} else {
+					return false;
+				}
+			break;
+		}
+
+	};
+
+	window.screenSize = screenSize;
 	
 })();
