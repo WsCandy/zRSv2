@@ -1,10 +1,14 @@
-zRS - Responsive Slider - v2.6.5
+zRS - Responsive Slider - v2.6.6
 ===
 
-2.6.5 Update
+2.6.6 Update
 ---
 
-Various fixes and tweaks to help reduce the number of lines. The screenSize function is now also included within the main closure and has now been made global so it can be accessed throughout the site.
+Bower support! zRS can now be installed with Bower simply type the following:
+
+	bower install zRS
+
+Magic!
 
 #####Release History
 
@@ -58,7 +62,7 @@ Here's a list of options with all their default values:
 	procedural : false, 			// Procedural image loading, more info below.
 	pager : false, 				// A selector for pagination e.g. $('.pager').
 	pauseOnHover : false, 		// Explains itself!
-	visibleSlides : 1, 			// The number of slides visible at anytime, not compatible with fade.
+	visibleSlides : 1, 			// The number of slides visible at any time, not compatible with fade.
     	slideBy: 1,               			// Number of slides to move by. Set this to visibleSlides for a paging effect.
 	setVisibleSlides : null,			// Pass an object through to set the number of visible slides depending on view port width.
 	slideSpacing : 0,			// The spacing in pixels between each slide.
