@@ -1,0 +1,38 @@
+{
+
+    "name": "zRS",
+    "version": "2.6.5",
+    "authors": [
+   
+        "Samuel Woodbridge"
+
+    ],
+
+    "description": "Responsive jQuery Slider",
+    "main": "zRS.js",
+    "repository": {
+
+        "type" : "git",
+        "url" : "https://github.com/WsCandy/zRSv2.git"
+
+    },
+
+    "keywords": [
+
+        "Slider",
+        "responsive",
+        "jQuery",
+        "Propeller"
+
+    ],
+
+    "license": "Public",
+    "homepage": "https://github.com/WsCandy/zRSv2.git",
+
+    "ignore" : [
+
+        "/sass/"
+
+    ]
+
+}
