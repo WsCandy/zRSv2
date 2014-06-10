@@ -34,7 +34,6 @@
     "ignore" : [
 
         "/sass/",
-        "/bower.json",
         "/css/",
         "/img/",
         "/index.html"
