@@ -39,6 +39,16 @@
         "/img/",
         "/index.html"
 
-    ]
+    ],
+
+    "install" : {
+    
+        "path" : {
+
+            "js" : "public/assets/js/"
+
+        }
+
+    }
 
 }
