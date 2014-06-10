@@ -6,7 +6,7 @@ zRS - Responsive Slider - v2.6.6
 
 Bower support! zRS can now be installed with Bower simply type the following:
 
-	bower install zRS
+	bower install propcom-zRS
 
 Magic!
 

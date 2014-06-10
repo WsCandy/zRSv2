@@ -21,7 +21,10 @@
         "Slider",
         "responsive",
         "jQuery",
-        "Propeller"
+        "Propeller",
+        "propcomm",
+        "propeller",
+        "propcom"
 
     ],
 
