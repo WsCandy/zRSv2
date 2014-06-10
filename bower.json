@@ -28,12 +28,6 @@
 
     ],
 
-    "dependencies" : {
-
-        "jquery" : "latest"
-
-    },
-
     "license": "Public",
     "homepage": "https://github.com/WsCandy/zRSv2.git",
 
@@ -44,18 +38,6 @@
         "/img/",
         "/index.html"
 
-    ],
-
-    "install" : {
-    
-        "path" : "public/assets/js",
-
-        "source" : {
-
-            "jquery" : "dist/jquery.js"
-
-        }
-
-    }
+    ]
 
 }
