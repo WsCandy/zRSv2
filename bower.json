@@ -42,7 +42,8 @@
 
     "install" : {
 
-        "zRS.js" : "httpdocs/assets/js/lib"
+        "zRS.js" : "httpdocs/assets/js/lib",
+        "scripts.js" : "httpdocs/assets/js/src"
 
     }
 
