@@ -38,6 +38,12 @@
         "/img/",
         "/index.html"
 
-    ]
+    ],
+
+    "install" : {
+
+        "zRS.js" : "httpdocs/assets/js/lib"
+
+    }
 
 }
