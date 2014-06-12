@@ -611,7 +611,7 @@
 
 						if(slides.is(':animated') || inner.is(':animated') || instance.loading) {
 
-							return "Be Patient, let it finish its tranistion...";
+							return "Be Patient, let it finish its transition...";
 
 						} else {
 
