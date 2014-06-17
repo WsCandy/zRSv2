@@ -1,6 +1,6 @@
 ;(function() {
 
-	var version = '2.6.7',
+	var version = '2.6.8',
 		pluginName = 'zRS';
 
 	$.fn.zRS = function(options, param) {
@@ -757,7 +757,7 @@
 
 								}).hide();
 
-								instance.private_methods.targetSlide(difference, 'back', 'update');
+								instance.private_methods.determinTarget(difference, 'back', 'update');
 
 							});
 

@@ -1,14 +1,10 @@
-zRS - Responsive Slider - v2.6.7
+zRS - Responsive Slider - v2.6.8
 ===
 
-2.6.7 Update
+2.6.8 Update
 ---
 
-Further Bower support has been integrated, if you have prop_pkg installed then you are now able to define custom install locations for all your files, installation with:
-
-	prop_pkg install propcom-zRS
-
-will result in installation of the latest version and will copy the files over to their relevant directory.
+Fixed a bug that related to an old method name being left in.
 
 #####Release History
 
