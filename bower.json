@@ -43,7 +43,7 @@
     "install" : {
 
         "zRS.js" : "httpdocs/assets/js/lib",
-        "scripts.js" : "httpdocs/assets/js/src"
+        "zRS-init.js" : "httpdocs/assets/js/src"
 
     }
 
