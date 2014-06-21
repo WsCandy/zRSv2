@@ -1,10 +1,10 @@
-zRS - Responsive Slider - v2.6.8
+zRS - Responsive Slider - v2.6.8a
 ===
 
-2.6.8 Update
+2.6.8a Update
 ---
 
-Fixed a bug that related to an old method name being left in.
+Updated bower config with more appropriate file names.
 
 #####Release History
 
