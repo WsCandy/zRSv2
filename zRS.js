@@ -945,7 +945,7 @@
 
 						inner.css({
 
-							'width' : slides.width() * slideCount + 'px'
+							'width' : slides.width() * slideCount + (settings.slideSpacing * slideCount) + 'px'
 
 						});
 						
