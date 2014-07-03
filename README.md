@@ -54,7 +54,7 @@ Here's a list of options with all their default values:
 
 	delay: 5000, 				// The amount of time before the slide transitions automatically, set to 0 to turn off automatic transition.
 	speed : 1000, 				// The speed of the animation.
-	transition : 'slide', 			// Transition type, currently 'slide' and 'fade' are the only ones.
+	transition : 'slide', 			// Transition type, currently 'slide', 'fade' and 'verticalSlide' are the only ones.
 	procedural : false, 			// Procedural image loading, more info below.
 	pager : false, 				// A selector for pagination e.g. $('.pager').
 	pauseOnHover : false, 		// Explains itself!
