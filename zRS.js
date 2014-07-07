@@ -98,6 +98,14 @@
 		instance.private_methods = {
 
 			initialise: function() {
+				
+				if(!inner) {
+					
+					instance.private_methods.error('inner-slider div not found. Shutting down.');
+					
+					return;
+					
+				}
 
 				if(settings.procedural == true) {
 
