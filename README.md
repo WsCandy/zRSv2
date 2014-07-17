@@ -1,10 +1,10 @@
-zRS - Responsive Slider - v2.6.8a
+zRS - Responsive Slider - v2.6.9
 ===
 
-2.6.8a Update
+2.6.9 Update
 ---
 
-Updated bower config with more appropriate file names.
+Made an amendment to backstretch, it now selects the image instead of just the slide.
 
 #####Release History
 
