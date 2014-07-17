@@ -554,7 +554,7 @@
 
 					for(var i = 0; i < slides.length; i++) { 
 						
-						var slide = ($(slides[i]).is('img') ? $(slides[i]) : $(slides[i]).find('img');
+						var slide = ($(slides[i]).is('img') ? $(slides[i]) : $(slides[i]).find('img'));
 						var slideWidth = slide.outerWidth();
 						var slideHeight = slide.outerHeight();
 
