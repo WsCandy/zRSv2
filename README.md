@@ -1,7 +1,7 @@
-zRS - Responsive Slider - v2.6.9
+zRS - Responsive Slider - v2.9.0
 ===
 
-2.6.9 Update
+2.9.0 Update
 ---
 
 Add in a new option to define a class for '.inner-slider'. To change simply add the following option!
