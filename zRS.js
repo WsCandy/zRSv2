@@ -1,6 +1,6 @@
 ;(function() {
 
-	var version = '2.6.8a',
+	var version = '2.6.9',
 		pluginName = 'zRS';
 
 	$.fn.zRS = function(options, param) {
@@ -79,13 +79,14 @@
 			pre_trans_callback : null,
 			trans_callback : null,
 			sizes: null,
-			load_callback : null
+			load_callback : null,
+			inner : '.inner-slider'
 
 		};
 
 		var settings = $.extend(instance.defaults, options);
 
-		var inner = self.data('inner') == undefined ? self.children('.inner-slider') : self.data('inner'),
+		var inner = self.data('inner') == undefined ? self.children(settings.inner) : self.data('inner'),
 			slides = inner.children(),
 			slideCount = slides.length,
 			currentSlide = 0,
@@ -164,7 +165,7 @@
 
 					if(slides.is(':hidden')) {
 
-						self.find('.inner-slider').css({
+						self.find(settings.inner).css({
 
 							'height' : 'auto'
 
@@ -779,7 +780,7 @@
 							
 							slides.wrapAll('<div class="carousel" />');
 							slides.show();
-							inner = self.children('.inner-slider').children('.carousel');
+							inner = self.children(settings.inner).children('.carousel');
 
 							self.data('inner', inner);
 
@@ -862,7 +863,7 @@
 							
 							slides.wrapAll('<div class="carousel" />');
 							slides.show();
-							inner = self.children('.inner-slider').children('.carousel');
+							inner = self.children(settings.inner).children('.carousel');
 
 							self.data('inner', inner);
 
