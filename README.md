@@ -4,7 +4,11 @@ zRS - Responsive Slider - v2.6.9
 2.6.9 Update
 ---
 
-Made an amendment to backstretch, it now selects the image instead of just the slide.
+Add in a new option to define a class for '.inner-slider'. To change simply add the following option!
+
+	inner: '.your-inner-name'
+
+Job done, simple!
 
 #####Release History
 
@@ -68,6 +72,7 @@ Here's a list of options with all their default values:
 	sizes: null, 				// An object full of sizes to swap out for smaller images on mobile devices.
 	touch: false				// Enable touch transitions for touch devices
 	backstretch: false			// Enable background image cropping and resizing
+	inner: '.inner-slider'			// Add a custom class/ID to the inner div!
 
 Callbacks:
 ---
