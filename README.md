@@ -56,23 +56,23 @@ Options:
 
 Here's a list of options with all their default values:
 
-	delay: 5000, 				// The amount of time before the slide transitions automatically, set to 0 to turn off automatic transition.
-	speed : 1000, 				// The speed of the animation.
-	transition : 'slide', 			// Transition type, currently 'slide', 'fade' and 'verticalSlide' are the only ones.
-	procedural : false, 			// Procedural image loading, more info below.
-	pager : false, 				// A selector for pagination e.g. $('.pager').
-	pauseOnHover : false, 			// Explains itself!
-	visibleSlides : 1, 			// The number of slides visible at any time, not compatible with fade.
-    	slideBy: 1,               		// Number of slides to move by. Set this to visibleSlides for a paging effect.
-	setVisibleSlides : null,		// Pass an object through to set the number of visible slides depending on view port width.
-	slideSpacing : 0,			// The spacing in pixels between each slide.
-	pre_trans_callback : null,		// A callback just before the slide transitions.
-	trans_callback : null, 			// A callback for when the slide has finished it's transition.
-	load_callback : null,			// A callback for when the slide has finished loading.
-	sizes: null, 				// An object full of sizes to swap out for smaller images on mobile devices.
-	touch: false				// Enable touch transitions for touch devices
-	backstretch: false			// Enable background image cropping and resizing
-	inner: '.inner-slider'			// Add a custom class/ID to the inner div!
+	delay: 5000,                            // The amount of time before the slide transitions automatically, set to 0 to turn off automatic transition.
+	speed : 1000,                           // The speed of the animation.
+	transition : 'slide',                   // Transition type, currently 'slide', 'fade' and 'verticalSlide' are the only ones.
+	procedural : false,                     // Procedural image loading, more info below.
+	pager : false,                          // A selector for pagination e.g. $('.pager').
+	pauseOnHover : false,                   // Explains itself!
+	visibleSlides : 1,                      // The number of slides visible at any time, not compatible with fade.
+    	slideBy: 1,                             // Number of slides to move by. Set this to visibleSlides for a paging effect.
+	setVisibleSlides : null,                // Pass an object through to set the number of visible slides depending on view port width.
+	slideSpacing : 0,                       // The spacing in pixels between each slide.
+	pre_trans_callback : null,              // A callback just before the slide transitions.
+	trans_callback : null,                  // A callback for when the slide has finished it's transition.
+	load_callback : null,                   // A callback for when the slide has finished loading.
+	sizes: null,                            // An object full of sizes to swap out for smaller images on mobile devices.
+	touch: false,                           // Enable touch transitions for touch devices
+	backstretch: false,                     // Enable background image cropping and resizing
+	inner: '.inner-slider'                  // Add a custom class/ID to the inner div!
 
 Callbacks:
 ---
