@@ -484,7 +484,9 @@
 
 					self.on('touchmove', function(e) {
 
-						e.preventDefault();
+						if ((e.distX > e.distY && e.distX < -e.distY) || (e.distX < e.distY && e.distX > -e.distY)) {
+							e.preventDefault();
+						}
 
 					});
 
