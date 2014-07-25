@@ -1,14 +1,10 @@
-zRS - Responsive Slider - v2.9.0
+zRS - Responsive Slider - v2.9.1
 ===
 
-2.9.0 Update
+2.9.1 Update
 ---
 
-Add in a new option to define a class for '.inner-slider'. To change simply add the following option!
-
-	inner: '.your-inner-name'
-
-Job done, simple!
+Fixed a long standing bug with touch on mobile devices, no more jumping around and accidental scrolling!
 
 #####Release History
 
