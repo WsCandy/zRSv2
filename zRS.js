@@ -1,6 +1,6 @@
 ;(function() {
 
-	var version = '2.9.1',
+	var version = '2.9.2',
 		pluginName = 'zRS';
 
 	$.fn.zRS = function(options, param) {
