@@ -3,9 +3,9 @@ $(document).ready(function() {
 	$('.slider').zRS({
 
 		pager: $('.pager'),
-		visibleSlides: 2,
+		procedural: true,
 		touch: true,
-		transition: 'verticalSlide',
+		transition: 'slide',
 		slideBy: 1
 
 	});
@@ -14,8 +14,7 @@ $(document).ready(function() {
 
 		pager: $('.bs-pager'),
 		backstretch : true,
-		transition: 'fade',
-		procedural: true
+		transition: 'fade'
 
 	});
 
