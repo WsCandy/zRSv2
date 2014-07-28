@@ -100,10 +100,9 @@
 
 			initialise: function() {
 				
-				if(!inner) {
+				if(self.find(settings.inner).size() <= 0) {
 					
-					instance.private_methods.error('inner-slider div not found. Shutting down.');
-					
+					instance.private_methods.error('inner-slider div not found. Shutting down.');					
 					return;
 					
 				}
@@ -200,7 +199,7 @@
 
 			error: function(message) {
 
-				console.log('['+ pluginName +' v'+version+'] - ' + message + ' D:');
+				console.error('['+ pluginName +' v'+version+'] - ' + message + ' D:');
 
 			},
 
