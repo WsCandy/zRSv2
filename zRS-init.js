@@ -3,10 +3,11 @@ $(document).ready(function() {
 	$('.slider').zRS({
 
 		pager: $('.pager'),
-		procedural: true,
 		touch: true,
 		transition: 'slide',
-		slideBy: 1
+		slideBy: 1,
+		next : $('.next'),
+		prev : $('.prev')
 
 	});
 
