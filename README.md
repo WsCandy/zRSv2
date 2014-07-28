@@ -1,10 +1,10 @@
-zRS - Responsive Slider - v2.9.2
+zRS - Responsive Slider - v2.9.3
 ===
 
-2.9.2 Update
+2.9.3 Update
 ---
 
-A long standing issue with procedural transitions and the slide animation has been fixed! When you slide by more than one slide it will load images in between your current slide and target slide!
+Added in an option that allows you to select an element that, when clicked, will scroll through slides.
 
 #####Release History
 
