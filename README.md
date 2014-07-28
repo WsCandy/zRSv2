@@ -69,6 +69,8 @@ Here's a list of options with all their default values:
 	touch: false,                           // Enable touch transitions for touch devices
 	backstretch: false,                     // Enable background image cropping and resizing
 	inner: '.inner-slider'                  // Add a custom class/ID to the inner div!
+	next: false                             // A selector for a 'next' button e.g. $('.next')
+	prev: false                             // A selector for a 'prev' button e.g. $('.prev')
 
 Callbacks:
 ---
