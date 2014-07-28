@@ -80,7 +80,9 @@
 			trans_callback : null,
 			sizes: null,
 			load_callback : null,
-			inner : '.inner-slider'
+			inner : '.inner-slider',
+			next : false,
+			prev : false
 
 		};
 
@@ -122,6 +124,36 @@
 				} else if(typeof settings.pager == 'object' && settings.pager.size() <= 0) {
 
 					instance.private_methods.error('Pager container not found!');
+
+				}
+
+				if (typeof settings.next == 'object' && settings.next.size() > 0) {
+
+					settings.next.click(function(e) {
+
+						e.preventDefault();
+						instance.public_methods['transition'].handler('forward');
+
+					});
+
+				} else if(typeof settings.next == 'object' && settings.next.size() <= 0) {
+
+					instance.private_methods.error('Next selector not found...');
+
+				}
+
+				if (typeof settings.prev == 'object' && settings.prev.size() > 0) {
+
+					settings.prev.click(function(e) {
+
+						e.preventDefault();
+						instance.public_methods['transition'].handler('back');
+
+					});
+
+				} else if(typeof settings.prev == 'object' && settings.prev.size() <= 0) {
+
+					instance.private_methods.error('Previous selector not found...');
 
 				}
 
@@ -679,7 +711,7 @@
 								});
 
 							}
-
+							
 							if(settings.procedural == true) {
 
 								instance.private_methods['procedural'].transition(direction, difference);
