@@ -349,53 +349,69 @@
 				},
 
 				transition: function(direction, difference) {
-					
+
 					instance.loading = true;
 
 					var target = instance.private_methods.determinTarget(difference, direction);
-					var count = difference;
+					var count = Math.abs(difference);
 
-					for(var i = (currentSlide == slideCount-1 ? 0 : currentSlide+1); i <= target; i++) {
+					if(direction == 'forward') {
 
-						var targetSlide = inner.children('*[data-slide='+i+']');
-						
-						var source = instance.private_methods.deriveSize();
+						for(var i = (currentSlide == slideCount-1 ? 0 : currentSlide+1); i <= target; i++) {
 
-						if(!(targetSlide.is('img'))) {
-
-							targetSlide = targetSlide.find('img');
+							instance.private_methods['procedural'].handler(i, direction, difference, target, count);
 
 						}
 
-						if(targetSlide.attr('src') != targetSlide.data(source)) {
+					} else {
 
-							targetSlide.unbind('load').load(function(){
+						for(var i = (currentSlide == 0 ? slideCount -1 : currentSlide-1); i >= target; i--) {
 
-								settings.backstretch ? instance.private_methods['backstretch'].sizes() : '';
-								instance.loading = false;
+							instance.private_methods['procedural'].handler(i, direction, difference, target, count);
 
-								count--;
+						}
 
-								if(count == 0) {
+					}
 
-									instance.public_methods['transition'][settings.transition][direction](difference);							
-									
-								}
+				},
 
-							}).attr('src', targetSlide.data(source));
+				handler: function(i, direction, difference, target, count) {
 
-						} else {
-							
+					var targetSlide = inner.children('*[data-slide='+i+']');                                                                                                    
+					var source = instance.private_methods.deriveSize();
+
+					if(!(targetSlide.is('img'))) {
+
+						targetSlide = targetSlide.find('img');
+
+					}
+
+					if(targetSlide.attr('src') != targetSlide.data(source)) {
+
+						targetSlide.unbind('load').load(function(){
+
+							settings.backstretch ? instance.private_methods['backstretch'].sizes() : '';
 							instance.loading = false;
 
 							count--;
 
 							if(count == 0) {
 
-								instance.public_methods['transition'][settings.transition][direction](difference);
-								
+								instance.public_methods['transition'][settings.transition][direction](difference);                                                                                                            
+						           
 							}
-								
+
+						}).attr('src', targetSlide.data(source));
+
+					} else {
+
+						instance.loading = false;
+						count--;
+
+						if(count == 0) {
+
+							instance.public_methods['transition'][settings.transition][direction](difference);
+
 						}
 
 					}
