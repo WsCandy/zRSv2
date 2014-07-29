@@ -1,10 +1,10 @@
-zRS - Responsive Slider - v2.9.3
+zRS - Responsive Slider - v2.9.4
 ===
 
-2.9.3 Update
+2.9.4 Update
 ---
 
-Added in an option that allows you to select an element that, when clicked, will scroll through slides.
+Fixed a bug where you couldn't transition backwards with procedural transitions.
 
 #####Release History
 
