@@ -1,10 +1,10 @@
-zRS - Responsive Slider - v2.9.4
+zRS - Responsive Slider - v2.9.5
 ===
 
-2.9.4 Update
+2.9.5 Update
 ---
 
-Fixed a bug where you couldn't transition backwards with procedural transitions.
+Made adjustments to the slide transition so slides don't vanish when you transition from one end to the other.
 
 #####Release History
 
