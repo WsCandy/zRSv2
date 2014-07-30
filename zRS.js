@@ -1041,7 +1041,10 @@
 
 				widthAdjustments: function() {
 
+					slides = inner.children();
+					
 					if(settings.transition == 'slide' && settings.backstretch != true) {
+
 
 						slides.css({
 
