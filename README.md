@@ -1,10 +1,12 @@
-zRS - Responsive Slider - v2.9.5
+zRS - Responsive Slider - v2.9.5a
 ===
 
-2.9.5 Update
+2.9.5a Update
 ---
 
 Made adjustments to the slide transition so slides don't vanish when you transition from one end to the other.
+
+a) Small bug fix, slider fetch slides again for resize functions.
 
 #####Release History
 
