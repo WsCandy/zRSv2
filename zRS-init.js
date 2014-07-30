@@ -6,6 +6,7 @@ $(document).ready(function() {
 		touch: true,
 		transition: 'slide',
 		slideBy: 1,
+		visibleSlides: 2,
 		next : $('.next'),
 		prev : $('.prev')
 
