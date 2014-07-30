@@ -889,12 +889,16 @@
 
 						forward: function(difference) {
 
+							inner.children(':first-child').clone().appendTo(inner);
+
 							inner.animate({
 
 								'left' : '-' + slides.outerWidth(true) * difference + 'px'
 
 
 							}, settings.speed, function(){
+
+								inner.children(':last-child').remove();
 
 								inner.css({
 
@@ -918,7 +922,9 @@
 
 							for(var i = 0; i > difference; i--) {
 
-								inner.children(':last-child').prependTo(inner);
+
+
+								inner.children().eq(slideCount-1).clone().prependTo(inner);
 
 							}
 
@@ -933,6 +939,12 @@
 								'left' : '0px'
 
 							}, settings.speed, function() {
+								
+								for(var i = 0; i > difference; i--) {
+
+									inner.children(':last-child').remove();
+
+								}
 
 								instance.private_methods.determinTarget(difference, 'back', 'update');
 								
@@ -1039,7 +1051,7 @@
 
 						inner.css({
 
-							'width' : slides.width() * slideCount + (settings.slideSpacing * slideCount) + 'px'
+							'width' : slides.width() * (slideCount *2) + (settings.slideSpacing * slideCount) + 'px'
 
 						});
 						
