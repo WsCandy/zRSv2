@@ -1,6 +1,6 @@
 ;(function() {
 
-	var version = '2.9.5',
+	var version = '2.9.6',
 		pluginName = 'zRS';
 
 	$.fn.zRS = function(options, param) {
@@ -1042,7 +1042,7 @@
 				widthAdjustments: function() {
 
 					slides = inner.children();
-					
+
 					if(settings.transition == 'slide' && settings.backstretch != true) {
 
 
