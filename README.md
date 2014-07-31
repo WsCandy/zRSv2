@@ -111,14 +111,14 @@ Methods:
 
 zRS has a few methods that you can call in order to manipulate the plug in once it's up and running, they are as follows:
 
-	$('.slider').zRS('transition', 'forward');		// Transitions forward 1 slide
-	$('.slider').zRS('transition', 'back');		// Transition back 1 slide
-	$('.slider').zRS('goTo', 0);			// Go to the specified slide! 0 is the first slide.
+	$('.slider').zRS('transition', 'forward');          // Transitions forward 1 slide
+	$('.slider').zRS('transition', 'back');             // Transition back 1 slide
+	$('.slider').zRS('goTo', 0);                        // Go to the specified slide! 0 is the first slide.
 
-	$('.slider').zRS('pause');			// This will pause the slider
-	$('.slider').zRS('play');				// This will resume the slider
+	$('.slider').zRS('pause');                          // This will pause the slider
+	$('.slider').zRS('play');                           // This will resume the slider
 
-	$('.slider').zRS('widthAdjustments');		// Update the width calculations for the slides
+	$('.slider').zRS('widthAdjustments');               // Update the width calculations for the slides
 
 
 Bind them to whatever events you need to!
