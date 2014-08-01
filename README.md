@@ -93,8 +93,8 @@ Each callback has a few values you can access to help you do what you need to do
 
 	trans_callback: function(e) {
 
-		this 		// The this keyword refers to the slide you're currently on.
-		e.slide 		// The slide number you're currently on.
+		this            // The this keyword refers to the slide you're currently on.
+		e.slide         // The slide number you're currently on.
 
 	}
 
