@@ -185,47 +185,53 @@
 
 				$(window).load(function() {
 
-					instance.private_methods.countSlides();
-					instance.public_methods['transition'][settings.transition].setUp();
-					
-					if (settings.backstretch == true) {
-
-						instance.private_methods['backstretch'].setUp();
-
-					}
-
-					if(slides.is(':hidden')) {
-
-						self.find(settings.inner).css({
-
-							'height' : 'auto'
-
-						});
-
-						self.find('.loader').remove();
-
-					}
-
-					if($.isFunction(settings.load_callback)) {
-
-						settings.load_callback.call(self);
-
-					}
-
-					instance.private_methods.setVisibleSlides();
-					instance.public_methods.widthAdjustments();
-					
-					if(slideCount <= 1) {
-
-						instance.private_methods.error('Less than one slide, shutting down');
-						return false;
-
-					}
-
-					instance.public_methods.play();
+					instance.private_methods.loaded();
 					
 				});
 
+
+			},
+
+			loaded: function() {
+
+				instance.private_methods.countSlides();
+				instance.public_methods['transition'][settings.transition].setUp();
+				
+				if (settings.backstretch == true) {
+
+					instance.private_methods['backstretch'].setUp();
+
+				}
+
+				if(slides.is(':hidden')) {
+
+					self.find(settings.inner).css({
+
+						'height' : 'auto'
+
+					});
+
+					self.find('.loader').remove();
+
+				}
+
+				if($.isFunction(settings.load_callback)) {
+
+					settings.load_callback.call(self);
+
+				}
+
+				instance.private_methods.setVisibleSlides();
+				instance.public_methods.widthAdjustments();
+				
+				if(slideCount <= 1) {
+
+					instance.private_methods.error('Less than one slide, shutting down');
+					return false;
+
+				}
+
+				instance.public_methods.play();				
 
 			},
 
@@ -535,6 +541,12 @@
 						settings.pager.children('a[data-target='+targetSlide+']').addClass('active');
 
 					}
+
+				},
+
+				clear: function() {
+
+					settings.pager.empty();
 
 				}
 
@@ -1144,6 +1156,14 @@
 			clear: function() {
 
 				slides.remove();
+
+				currentSlide = 0;
+
+				if (typeof settings.pager == 'object' && settings.pager.size() > 0) {
+
+					instance.private_methods['pager'].clear();
+
+				}
 
 			}
 
