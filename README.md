@@ -122,6 +122,9 @@ zRS has a few methods that you can call in order to manipulate the plug in once 
 
 	$('.slider').zRS('pause');                          // This will pause the slider
 	$('.slider').zRS('play');                           // This will resume the slider
+	
+	$('.slider').zRS('clear');                          // Destroys all slides in the slider
+	$('.slider').zRS('reInit');                         // This will fire the initialisation funtion again
 
 	$('.slider').zRS('widthAdjustments');               // Update the width calculations for the slides
 
