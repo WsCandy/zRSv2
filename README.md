@@ -1,12 +1,17 @@
-zRS - Responsive Slider - v2.9.5a
+zRS - Responsive Slider - v2.9.6
 ===
 
-2.9.5a Update
+2.9.6 Update
 ---
 
-Made adjustments to the slide transition so slides don't vanish when you transition from one end to the other.
+Added in two new public methods 'clear' and 'reInit'. They can be invoked by doing the following:
 
-a) Small bug fix, slider fetch slides again for resize functions.
+	$('.slider').zRS('clear');
+	$('.slider').zRS('reInit');
+
+Clear will delete all the slides in the slider.
+
+ReInit will reinitialise the slider, counting all the slides and setting it all up correctly!
 
 #####Release History
 
