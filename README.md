@@ -1,15 +1,10 @@
-zRS - Responsive Slider - v2.9.6
+zRS - Responsive Slider - v2.9.7
 ===
 
-2.9.6 Update
+2.9.7 Update
 ---
 
-Added in two new public methods 'clear' and 'reInit'. They can be invoked by doing the following:
-
-	$('.slider').zRS('clear');
-	$('.slider').zRS('reInit');
-
-Clear will delete all the slides in the slider.
+The clear method now clears the pager too and the reInit method will now correctly initialise the slider.
 
 ReInit will reinitialise the slider, counting all the slides and setting it all up correctly!
 
