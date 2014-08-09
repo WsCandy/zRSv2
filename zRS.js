@@ -1055,6 +1055,12 @@
 
 				slides = inner.children();
 
+				if (settings.backstretch == true) {
+
+					instance.private_methods['backstretch'].sizes();
+
+				}
+
 				if(settings.transition == 'slide' && settings.backstretch != true) {
 
 
