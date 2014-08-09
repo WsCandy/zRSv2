@@ -1,12 +1,10 @@
-zRS - Responsive Slider - v2.9.7
+zRS - Responsive Slider - v2.9.8
 ===
 
-2.9.7 Update
+2.9.8 Update
 ---
 
-The clear method now clears the pager too and the reInit method will now correctly initialise the slider.
-
-ReInit will reinitialise the slider, counting all the slides and setting it all up correctly!
+Made fixes to the width adjustment function so it correctly works with backstretch.
 
 #####Release History
 
