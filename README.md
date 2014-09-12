@@ -1,10 +1,12 @@
-zRS - Responsive Slider - v2.9.8
+zRS - Responsive Slider - v2.10.0
 ===
 
-2.9.8 Update
+2.10.0 Update
 ---
 
-Made fixes to the width adjustment function so it correctly works with backstretch.
+Added in the textFade option, this will make transitioning slides with only text appear a lot smoother! To invoke simply use the following option:
+
+	textFade: true
 
 #####Release History
 
@@ -71,6 +73,7 @@ Here's a list of options with all their default values:
 	inner: '.inner-slider'                  // Add a custom class/ID to the inner div!
 	next: false                             // A selector for a 'next' button e.g. $('.next')
 	prev: false                             // A selector for a 'prev' button e.g. $('.prev')
+	textFade: false			// Will enable smooth text transitions for the fade animation
 
 Callbacks:
 ---
