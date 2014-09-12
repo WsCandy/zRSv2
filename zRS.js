@@ -1,6 +1,6 @@
 ;(function() {
 
-	var version = '2.9.8',
+	var version = '2.10.0',
 		pluginName = 'zRS';
 
 	$.fn.zRS = function(options, param) {
@@ -82,7 +82,8 @@
 			load_callback : null,
 			inner : '.inner-slider',
 			next : false,
-			prev : false
+			prev : false,
+			textFade : false
 
 		};
 
@@ -799,6 +800,8 @@
 					},
 
 					forward: function(difference) {
+
+						if(settings.textFade === true) slides.fadeOut(settings.speed);
 						
 						inner.children().eq(difference).css({
 
@@ -830,6 +833,8 @@
 					},
 
 					back : function(difference) {							
+
+						if(settings.textFade === true) slides.fadeOut(settings.speed);
 
 						for(var i = 0; i > difference; i--) {
 
