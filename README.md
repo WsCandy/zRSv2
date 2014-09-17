@@ -1,12 +1,10 @@
-zRS - Responsive Slider - v2.10.0
+zRS - Responsive Slider - v2.10.1
 ===
 
-2.10.0 Update
+2.10.1 Update
 ---
 
-Added in the textFade option, this will make transitioning slides with only text appear a lot smoother! To invoke simply use the following option:
-
-	textFade: true
+Fixed a console logging error in older browsers.
 
 #####Release History
 
