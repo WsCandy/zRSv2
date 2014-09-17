@@ -1,6 +1,6 @@
 ;(function() {
 
-	var version = '2.10.0',
+	var version = '2.10.1',
 		pluginName = 'zRS';
 
 	$.fn.zRS = function(options, param) {
@@ -23,7 +23,7 @@
 
 				if(!instance) {
 
-					console.log('['+pluginName+' v'+version+'] - You\'re trying to fire a method on an element with no instance!');
+					if(console) console.log('['+pluginName+' v'+version+'] - You\'re trying to fire a method on an element with no instance!');
 					return false;
 
 				} else if(instance.public_methods[options]) {
@@ -238,7 +238,7 @@
 
 			error: function(message) {
 
-				console.error('['+ pluginName +' v'+version+'] - ' + message + ' D:');
+				if(console) console.warn('['+ pluginName +' v'+version+'] - ' + message + ' D:');
 
 			},
 
