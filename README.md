@@ -1,10 +1,10 @@
-zRS - Responsive Slider - v2.10.1
+zRS - Responsive Slider - v2.10.2
 ===
 
-2.10.1 Update
+2.10.2 Update
 ---
 
-Fixed a console logging error in older browsers.
+Made a fix for procedural loading and multiple visible slides
 
 #####Release History
 
