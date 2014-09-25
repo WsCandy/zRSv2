@@ -1,6 +1,6 @@
 ;(function() {
 
-	var version = '2.10.1',
+	var version = '2.10.2',
 		pluginName = 'zRS';
 
 	$.fn.zRS = function(options, param) {
@@ -345,7 +345,7 @@
 
 						}
 
-						if(i == 0) {
+						if(i < settings.visibleSlides) {
 
 							slide.attr('src', slide.attr('data-'+instance.private_methods.deriveSize()));
 
@@ -366,7 +366,7 @@
 
 						for(var i = (currentSlide == slideCount-1 ? 0 : currentSlide+1); i <= target; i++) {
 
-							instance.private_methods['procedural'].handler(i, direction, difference, target, count);
+							instance.private_methods['procedural'].handler((i + (settings.visibleSlides -1)), direction, difference, target, count);
 
 						}
 
