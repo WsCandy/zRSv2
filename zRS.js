@@ -1,6 +1,6 @@
 ;(function() {
 
-	var version = '2.10.2',
+	var version = '2.10.3',
 		pluginName = 'zRS';
 
 	$.fn.zRS = function(options, param) {
@@ -184,12 +184,19 @@
 
 				});
 
-				$(window).load(function() {
+				if(window.loaded == true) {
 
 					instance.private_methods.loaded();
-					
-				});
 
+				} else {
+
+					$(window).load(function() {
+
+						instance.private_methods.loaded();
+						
+					});					
+
+				}
 
 			},
 
@@ -317,7 +324,6 @@
 					return targetSlide;
 					
 				}
-
 
 			},
 
@@ -939,8 +945,6 @@
 
 						for(var i = 0; i > difference; i--) {
 
-
-
 							inner.children().eq(slideCount-1).clone().prependTo(inner);
 
 						}
@@ -1005,7 +1009,6 @@
 
 							'top' : '-' + slides.outerHeight(true) * difference + 'px'
 
-
 						}, settings.speed, function(){
 
 							inner.css({
@@ -1067,7 +1070,6 @@
 				}
 
 				if(settings.transition == 'slide' && settings.backstretch != true) {
-
 
 					slides.css({
 
@@ -1151,7 +1153,6 @@
 
 			pause: function() {
 
-
 				window.clearTimeout(self.timer);
 
 				return "Paused!";
@@ -1185,24 +1186,44 @@
 	var screenSize = function(compare, size) {
 
 		switch (compare) {
+			
 			case 'smaller':
+				
 				if(document.documentElement.clientWidth <= size) {
+
 					return true;
+
 				} else {
+
 					return false;
+
 				}
+
 			break;
+
 			case 'larger':
+
 				if(document.documentElement.clientWidth > size) {
+
 					return true;
+
 				} else {
+
 					return false;
+
 				}
+
 			break;
 		}
 
 	};
 
 	window.screenSize = screenSize;
+
+	$(window).load(function() {
+
+		window.loaded = true;
+
+	});
 	
 })();
