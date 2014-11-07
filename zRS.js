@@ -339,6 +339,8 @@
 
 			procedural: {
 
+				count: 0,
+
 				setUp: function() {
 
 					for(var i = 0; i < slideCount; i++) {
@@ -353,7 +355,11 @@
 
 						if(i < settings.visibleSlides) {
 
-							slide.attr('src', slide.attr('data-'+instance.private_methods.deriveSize()));
+							for(var img = 0; img < slide.length; img++) {
+
+								$(slide[img]).attr('src', $(slide[img]).attr('data-'+instance.private_methods.deriveSize()));
+
+							}
 
 						}
 
@@ -366,13 +372,13 @@
 					instance.loading = true;
 
 					var target = instance.private_methods.determinTarget(difference, direction);
-					var count = Math.abs(difference);
+					instance.private_methods.procedural['count'] = Math.abs(difference);
 
 					if(direction == 'forward') {
 
 						for(var i = (currentSlide == slideCount-1 ? 0 : currentSlide+1); i <= target; i++) {
 
-							instance.private_methods['procedural'].handler((i + (settings.visibleSlides -1)), direction, difference, target, count);
+							instance.private_methods['procedural'].handler((i + (settings.visibleSlides -1)), direction, difference, target);
 
 						}
 
@@ -380,7 +386,7 @@
 
 						for(var i = (currentSlide == 0 ? slideCount -1 : currentSlide-1); i >= target; i--) {
 
-							instance.private_methods['procedural'].handler(i, direction, difference, target, count);
+							instance.private_methods['procedural'].handler(i, direction, difference, target);
 
 						}
 
@@ -388,10 +394,10 @@
 
 				},
 
-				handler: function(i, direction, difference, target, count) {
+				handler: function(i, direction, difference, target) {
 
-					var targetSlide = inner.children('*[data-slide='+i+']');                                                                                                    
-					var source = instance.private_methods.deriveSize();
+					var targetSlide = inner.children('*[data-slide='+i+']'),                                                                                                   
+						source = instance.private_methods.deriveSize();
 
 					if(!(targetSlide.is('img'))) {
 
@@ -399,33 +405,37 @@
 
 					}
 
-					if(targetSlide.attr('src') != targetSlide.data(source)) {
+					for(var img = 0; img < targetSlide.length; img++) {
 
-						targetSlide.unbind('load').load(function(){
+						if($(targetSlide[img]).attr('src') != $(targetSlide[img]).data(source)) {
 
-							settings.backstretch ? instance.private_methods['backstretch'].sizes() : '';
+							$(targetSlide[img]).unbind('load').load(function(){
+
+								settings.backstretch ? instance.private_methods['backstretch'].sizes() : '';
+								instance.loading = false;
+
+								instance.private_methods.procedural['count']--;
+
+								if(instance.private_methods.procedural['count'] == 0) {
+
+									instance.public_methods['transition'][settings.transition][direction](difference);                                                                                                            
+							           
+								}
+
+							}).attr('src', $(targetSlide[img]).data(source));
+
+						} else {
+
 							instance.loading = false;
+							instance.private_methods.procedural['count']--;
 
-							count--;
+							if(instance.private_methods.procedural['count'] == 0) {
 
-							if(count == 0) {
-
-								instance.public_methods['transition'][settings.transition][direction](difference);                                                                                                            
-						           
+								instance.public_methods['transition'][settings.transition][direction](difference);
+								
 							}
 
-						}).attr('src', targetSlide.data(source));
-
-					} else {
-
-						instance.loading = false;
-						count--;
-
-						if(count == 0) {
-
-							instance.public_methods['transition'][settings.transition][direction](difference);
-
-						}
+						}						
 
 					}
 
