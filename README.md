@@ -1,10 +1,10 @@
-zRS - Responsive Slider - v2.10.3
+zRS - Responsive Slider - v2.10.5
 ===
 
-2.10.3 Update
+2.10.5 Update
 ---
 
-Added in window loaded functionality, slider loading effects now load after initial page load.
+Fixed a long standing issue with touch integration.
 
 #####Release History
 

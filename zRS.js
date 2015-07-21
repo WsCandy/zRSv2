@@ -1,6 +1,6 @@
 ;(function() {
 
-	var version = '2.10.3',
+	var version = '2.10.5',
 		pluginName = 'zRS';
 
 	$.fn.zRS = function(options, param) {
@@ -580,21 +580,6 @@
 
 					});
 
-					self.on('touchmove', function(e) {
-
-						var y = e.originalEvent.touches[0].pageY;
-
-						if(y < (startY - 50) || y > (startY + 50)) {
-
-							instance.private_methods.touch.scrollIt((startY - y) > 0 ? ((startY - y) - 50) : ((startY - y) + 50));
-
-						} else {
-							
-							e.preventDefault();
-						}
-
-					});
-
 					self.on('touchcancel, touchend', function(e) {;
 
 						var x = instance.private_methods.touch.pos(e.originalEvent.changedTouches[0].pageX, 'x');
@@ -603,13 +588,6 @@
 						instance.private_methods.touch.end(x, y);
 
 					});
-
-				},
-
-				scrollIt: function(pos) {
-
-					var scrollTop = $(document).scrollTop();
-					$(document).scrollTop(scrollTop + (pos));
 
 				},
 
